@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Terrace Gardening</title>
+    <link rel="stylesheet" href="frontend/styles.css" />
+    <script src="frontend/script.js"></script>
+    <script src="frontend/login.js"></script>
+    <style>
+        body {
+            background: #e0e5ec;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #d4e3d4;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        main.login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        
+        .neumorphic {
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+        }
+        
+        .neumorphic-input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            border-radius: 10px;
+            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+            background: #e0e5ec;
+        }
+        
+        .neumorphic-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+            background: #e0e5ec;
+            font-weight: bold;
+        }
+        
+        .neumorphic-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            width: 350px;
+            text-align: center;
+        }
+        
+        .login-links {
+            margin-top: 10px;
+        }
+        
+        .login-links a {
+            font-size: 14px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        
+        footer {
+            background-color: #d4e3d4;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">🌿 ZENGardening</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <main class="login-page">
+        <section class="neumorphic neumorphic-card">
+            <h2>Login</h2>
+            <form id="loginForm" method="post" style="width: 100%;">
+                <input type="email" class="neumorphic-input" id="login-email" name="email" placeholder="Enter your email" required />
+                <input type="password" class="neumorphic-input" id="login-password" name="password" placeholder="Enter your password" required />
+                <input type="submit" class="neumorphic-button" value="Sign In">
+                <div class="login-links">
+                    <p><a href="forgot-password.html">Forgot your password?</a></p>
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">© 2025 ZENGardening. All rights reserved.</div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrace Gardening</title>
+    <base href="../frontend/">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* All the sidebar styles from the CSS section */
+        /* Copy all styles from the code I gave earlier */
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🌿 ZENGardening</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+
+            <li class="menu-icon" onclick="toggleMenu()">☰</li>
+        </ul>
+    </nav>
+
+
+    <div class="sidebar" id="sidebar">
+        <h2><i class="fas fa-user-circle"></i> My Profile</h2>
+        <ul>
+            <li><i class="fas fa-home"></i> Home</li>
+            <li><i class="fas fa-th-large"></i> My Garden Plan</li>
+            <li><i class="fas fa-graduation-cap"></i> Tutorials</li>
+            <li><i class="fas fa-bell"></i> Notifications</li>
+            <li><i class="fas fa-moon"></i> Switch Theme</li>
+        </ul>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <header class="hero">
+        <h1>Learn Gardening</h1>
+    </header>
+
+    <body>
+
+        <!-- Gardening Courses Section -->
+        <section class="courses">
+            <h2>🌿 Gardening Courses For Flower's 🌿</h2>
+
+            <div class="course-wrapper">
+                <button class="scroll-btn left" onclick="scrollLeft()">&#9665;</button>
+
+                <a href="rose-course.html" class="course-card">
+                    <img src="rose.jpg" alt="Rose Gardening">
+                    <h3>Rose Gardening</h3>
+                    <p>Master the art of growing vibrant roses.</p>
+                </a>
+
+                <a href="dahlia-course.html" class="course-card">
+                    <img src="dahlia.jpg" alt="Dahlia Gardening">
+                    <h3>Dahlia Gardening</h3>
+                    <p>Master the art of growing beautiful dahlias!</p>
+                </a>
+
+                <a href="tulip-course.html" class="course-card">
+                    <img src="tulip.jpg" alt="Tulip Gardening">
+                    <h3>Tulip Gardening</h3>
+                    <p>Discover the secrets of growing vibrant tulips!</p>
+                </a>
+
+                <a href="sunflower-course.html" class="course-card">
+                    <img src="sunflower.jpg" alt="Sunflower Gardening">
+                    <h3>Sunflower Gardening</h3>
+                    <p>Grow bright and healthy sunflowers!</p>
+                </a>
+
+                <a href="lavender-course.html" class="course-card">
+                    <img src="lavender.jpg" alt="Lavender Gardening">
+                    <h3>Lavender Gardening</h3>
+                    <p>Learn how to cultivate fragrant lavender!</p>
+                </a>
+
+                <a href="marigold-course.html" class="course-card">
+                    <img src="marigold.jpg" alt="Marigold Gardening">
+                    <h3>Marigold Gardening</h3>
+                    <p>Grow vibrant marigolds in your garden!</p>
+                </a>
+            </div>
+            </div>
+
+            <button class="scroll-btn right" onclick="scrollRight()">&#9655;</button>
+            </div>
+        </section>
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+        </script>
+
+
+    </body>
+
+    <section class="courses">
+        <h2>🌿 Gardening Courses For Vegetable's 🌿</h2>
+
+        <div class="course-wrapper">
+            <button class="scroll-btn left" onclick="scrollLeft()">&#9665;</button>
+
+            <div class="course-container">
+                <div class="course-card" data-title="Chilli Pepper Power" data-image="chilli-course.jpg" data-description="Spice up your terrace garden with vibrant chilli peppers. From seed to harvest, learn the tips for hot success.">
+                    <img src="chilli-course.jpg" alt="Chilli Pepper Power">
+                    <h3>Chilli Pepper Power</h3>
+                    <p>Grow your own spicy chilli peppers.</p>
+
+                    <button onclick="openModal('Chilli Pepper Power', 'chilli-course.jpg', 'Spice up your terrace garden with vibrant chilli peppers. From seed to harvest, learn the tips for hot success.')">Learn More</button>
+                </div>
+
+                <div class="course-card" data-title="Brinjal Bonanza" data-image="brinjal-course.jpg" data-description="Uncover the ease of growing brinjals (eggplants) in containers. Learn about soil, watering, and maximizing your yield.">
+                    <img src="brinjal-course.jpg" alt="Brinjal Bonanza">
+                    <h3>Brinjal Bonanza</h3>
+                    <p>Easy guide to growing brinjals.</p>
+
+                    <button onclick="openModal('Brinjal Bonanza', 'brinjal-course.jpg', 'Uncover the ease of growing brinjals (eggplants) in containers. Learn about soil, watering, and maximizing your yield.')">Learn More</button>
+                </div>
+
+                <div class="course-card" data-title="Radish Rapid Results" data-image="radish-course.jpg" data-description="Experience the joy of quick harvests with radishes. This course covers everything from sowing to enjoying your crunchy produce.">
+                    <img src="radish-course.jpg" alt="Radish Rapid Results">
+                    <h3>Radish Rapid Results</h3>
+                    <p>Fast-growing radishes for your terrace.</p>
+
+                    <button onclick="openModal('Radish Rapid Results', 'radish-course.jpg', 'Experience the joy of quick harvests with radishes. This course covers everything from sowing to enjoying your crunchy produce.')">Learn More</button>
+                </div>
+
+                <div class="course-card" data-title="Carrot Care" data-image="carrot-course.jpg" data-description="Learn how to grow sweet and crunchy carrots in your terrace garden.">
+                    <img src="carrot-course.jpg" alt="Carrot Care">
+                    <h3>Carrot Care</h3>
+                    <p>Grow sweet and crunchy carrots.</p>
+
+                    <button onclick="openModal('Carrot Care', 'carrot-course.jpg', 'Learn how to grow sweet and crunchy carrots in your terrace garden.')">Learn More</button>
+                </div>
+
+                <div class="course-card" data-title="Spinach Success" data-image="spinach-course.jpg" data-description="Discover the best methods for growing spinach and other leafy greens for a continuous supply of healthy greens.">
+                    <img src="spinach-course.jpg" alt="Spinach Success">
+                    <h3>Spinach Success</h3>
+                    <p>Grow healthy spinach in your garden.</p>
+
+                    <button onclick="openModal('Spinach Success', 'spinach-course.jpg', 'Discover the best methods for growing spinach and other leafy greens for a continuous supply of healthy greens.')">Learn More</button>
+                </div>
+
+                <div class="course-card" data-title="Pea Perfection" data-image="pea-course.jpg" data-description="Learn the secrets to growing peas successfully, from planting to harvesting their delicious pods.">
+                    <img src="pea-course.jpg" alt="Pea Perfection">
+                    <h3>Pea Perfection</h3>
+                    <p>Grow delicious peas in your terrace.</p>
+
+                    <button onclick="openModal('Pea Perfection', 'pea-course.jpg', 'Learn the secrets to growing peas successfully, from planting to harvesting their delicious pods.')">Learn More</button>
+                </div>
+
+                <div class="course-card" data-title="Capsicum Cultivation" data-image="capsicum-course.jpg" data-description="A comprehensive guide to growing capsicum (bell peppers) in your terrace garden, covering everything from seed to harvest.">
+                    <img src="capsicum-course.jpg" alt="Capsicum Cultivation">
+                    <h3>Capsicum Cultivation</h3>
+                    <p>Grow colorful capsicum peppers.</p>
+
+                    <button onclick="openModal('Capsicum Cultivation', 'capsicum-course.jpg', 'A comprehensive guide to growing capsicum (bell peppers) in your terrace garden, covering everything from seed to harvest.')">Learn More</button>
+                </div>
+
+                <div class="course-card" data-title="Cucumber Course" data-image="cucumber-course.jpg" data-description="Learn the best techniques for growing cucumbers, from choosing the right variety to trellising and harvesting.">
+                    <img src="cucumber-course.jpg" alt="Cucumber Course">
+                    <h3>Cucumber Course</h3>
+                    <p>Grow refreshing cucumbers.</p>
+
+                    <button onclick="openModal('Cucumber Course', 'cucumber-course.jpg', 'Learn the best techniques for growing cucumbers, from choosing the right variety to trellising and harvesting.')">Learn More</button>
+                </div>
+            </div>
+
+            <button class="scroll-btn right" onclick="scrollRight()">&#9655;</button>
+        </div>
+    </section>
+
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="courseTitle"></h2>
+            <img id="courseImage" src="" alt="Course Image">
+            <p id="courseDescription"></p>
+        </div>
+    </div>
+
+    <section class="feedback">
+        <h3>We'd Love to Hear From You!</h3>
+        <form id="feedbackForm" action="/submit-feedback" method="post">
+            <label for="feedbackName">Your Name (Optional):</label>
+            <input type="text" id="feedbackName" name="feedbackName" placeholder="Your Name">
+
+            <label for="feedbackEmail">Your Email (Optional):</label>
+            <input type="email" id="feedbackEmail" name="feedbackEmail" placeholder="Your Email">
+
+            <label for="feedbackTextarea">Your Feedback:</label>
+            <textarea id="feedbackTextarea" name="feedbackText" placeholder="Share your thoughts on our courses or website..." required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+
+    <button id="goTopBtn" onclick="scrollToTop()">⬆ Go Top</button>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About ZENGardening</h3>
+                <p>Providing resources and courses to help you create your dream terrace garden.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: ayushkrsingh008@gmail.com</p>
+                <p>Phone: +91 8207428343</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="newsletter-signup">
+                <h3>Subscribe to Our Newsletter</h3>
+                <p>Get the latest gardening tips and exclusive offers delivered to your inbox!</p>
+                <form id="newsletterForm" action="/subscribe" method="post">
+                    <div class="form-group">
+                        <label for="newsletter-email">Email Address:</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required>
+                    </div>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div id="newsletter-message" class="hidden"></div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22,12A10,10,0,1,0,10,22V14H7v-2h3V9a3,3,0,0,1,3-3h2v2H13a1,1,0,0,0-1,1v2h3l-1,2H12v8A10,10,0,0,0,22,12Z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com" target="_blank">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="3.2"/><path d="M15.5,2h-7A6.5,6.5,0,0,0,2,8.5v7A6.5,6.5,0,0,0,8.5,22h7A6.5,6.5,0,0,0,22,15.5v-7A6.5,6.5,0,0,0,15.5,2Zm3.5,13.5A3.5,3.5,0,0,1,15.5,19h-7A3.5,3.5,0,0,1,5,15.5v-7A3.5,3.5,0,0,1,8.5,5h7A3.5,3.5,0,0,1,19,8.5Zm1-8a1,1,0,1,1-1,1A1,1,0,0,1,20,5.5Z"/>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com" target="_blank">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22,5.2a8.2,8.2,0,0,1-2.3.6,4.1,4.1,0,0,0,1.8-2.3,8.3,8.3,0,0,1-2.6,1A4.1,4.1,0,0,0,11,8.3a11.7,11.7,0,0,1-8.5-4.3A4.1,4.1,0,0,0,4,10.7a4,4,0,0,1-1.9-.5V10a4.1,4.1,0,0,0,3.3,4,4,4,0,0,1-1.1.1,3.9,3.9,0,0,1-.8-.1,4.1,4.1,0,0,0,3.8,2.8A8.2,8.2,0,0,1,2,18.5,11.5,11.5,0,0,0,8.3,20,11.6,11.6,0,0,0,20,8.3c0-.2,0-.3,0-.5A8,8,0,0,0,22,5.2Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const feedbackForm = document.getElementById('feedbackForm');
+                    if (feedbackForm) {
+                        feedbackForm.addEventListener('submit', function(event) {
+                            const feedbackTextarea = document.getElementById('feedbackTextarea');
+                            if (feedbackTextarea.value.trim() === '') {
+                                alert('Please enter your feedback.');
+                                event.preventDefault();
+                            }
+                        });
+                    }
+                });
+            </script>
+
+</body>
+
+</html>

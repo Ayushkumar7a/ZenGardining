@@ -1,0 +1,16 @@
+{
+    "name": "zengardining-project",
+    "version": "1.0.0",
+    "description": "pbl project",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon index.js"
+    },
+    "author": "Ayush kumar singh",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.1.0",
+        "nodemon": "^3.1.9"
+    }
+}
