@@ -11,7 +11,11 @@ const JWT_SIGNATURE = "AyushKiGFhaiAlexa";
 
 // Route 1: Register a new user using POST "/api/auth/register"
 router.post(
-    "/register",
+    "/register", [
+        body("name", "Name must be at least 3 characters").isLength({ min: 3 }),
+        body("email", "Enter a valid email").escape().isEmail(),
+        body("password", "Password must be at least 6 characters").isLength({ min: 6 }),
+    ],
     async(req, res) => {
         let success = false;
         const errors = validationResult(req);

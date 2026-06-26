@@ -1,127 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Terrace Gardening</title>
+    <title>About Us – ZENGardening</title>
+    <meta name="description" content="Learn about ZENGardening. Meet our founder and explore our mission to simplify terrace and balcony urban organic gardening.">
+    
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script defer src="script.js"></script>
 </head>
-
 <body>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">🌿 ZENGardening</div>
+        <div class="logo" onclick="window.location.href='/'">🌿 ZENGardening</div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html" class="login-btn">Login</a></li>
-            <li class="menu-icon" onclick="toggleMenu()">☰</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/blog">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login" class="login-btn">Login</a></li>
+            <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+            <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
         </ul>
     </nav>
-    <div id="sidebar">
-        <a href="#">My Account</a>
-        <a href="#">All Services</a>
-        <a href="#">Dashboard</a>
+ 
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">🌿 ZENGardening</div>
+            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+            <a class="sidebar-item active-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+            <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        </nav>
     </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
+    <!-- HERO HEADER -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Our Gardening Journey 🌱</h1>
+            <p>Empowering urban spaces with chemical-free greenery, fresh produce, and peace of mind.</p>
+        </div>
+    </section>
 
+    <!-- ABOUT SECTIONS -->
     <main class="about-page">
         <section class="about-intro">
-            <h1>About Terrace Gardening</h1>
-            <p class="lead">Welcome to Terrace Gardening, your guide to creating beautiful and productive green spaces on your terrace, balcony, or any urban setting.</p>
+            <h2>Welcome to ZENGardening</h2>
+            <p class="lead" style="font-size: 1.05rem; font-weight: 500; color: var(--accent);">ZENGardening is your go-to guide to creating beautiful, blooming, and productive green corners on your terrace, balcony, or backyard.</p>
+            <p>Whether you're starting with a single potted plant or designing a complete vertical food garden, we supply the courses, checklists, guides, and tips you need to succeed.</p>
         </section>
 
         <section class="our-story">
             <h2>Our Story</h2>
-            <p>Here you can share your personal journey into terrace gardening. Talk about what inspired you, your initial challenges, your successes, and why you decided to create this website. You can mention your passion for sustainable living, connecting
-                with nature in urban environments, or the joy of growing your own food and flowers.</p>
-            <p>You can break this section into multiple paragraphs to tell a more detailed story. Feel free to include anecdotes and personal experiences to make it engaging.</p>
+            <p>ZENGardening was born from a simple love for plants and the therapeutic joy of gardening in crowded city spaces. What began as a personal balcony garden hobby soon grew into a mission to share the calm, fresh air, and organic harvest with city dwellers everywhere.</p>
+            <p>We realized that many beginner gardeners face issues with soil mixtures, overwatering, pest controls, or choosing seed types. Our tutorials simplify these processes, offering direct, step-by-step guides that yield successful harvests.</p>
         </section>
 
         <section class="our-mission">
             <h2>Our Mission</h2>
-            <p>Clearly state the purpose and goals of your website. What do you hope to achieve for your visitors? Examples include:</p>
             <ul>
-                <li>To provide comprehensive and easy-to-understand resources on terrace gardening.</li>
-                <li>To inspire and empower urban dwellers to create their own green oases.</li>
-                <li>To promote sustainable gardening practices in limited spaces.</li>
-                <li>To build a community of passionate terrace gardeners.</li>
+                <li>Provide clean, straightforward, and science-backed resource files for organic gardening.</li>
+                <li>Teach sustainable practices (composting, greywater recycling, organic pest control).</li>
+                <li>Inspire individuals to build micro-green oases that lower local temperatures and capture carbon.</li>
+                <li>Establish an active, helpful community of urban terrace gardeners.</li>
             </ul>
         </section>
 
         <section class="meet-the-team">
-            <h2>Meet the Team (Optional)</h2>
-            <p>🌿 Hi, I’m Ayush! Welcome to my gardening project! I’m a nature lover who enjoys spending time in the soil, learning about plants, and creating green spaces that bring joy and calm to everyday life. This website is my little corner of the
-                internet where I share my gardening journey — the wins, the lessons, and all the green in between. Whether you’re here to get inspired, pick up some tips, or just enjoy the beauty of plants, I’m glad you stopped by. Let’s grow together!
-                🌱.
-            </p>
+            <h2>Meet the Founder</h2>
             <div class="team-member">
                 <img src="placeholder-profile.jpg" alt="Ayush Kumar" class="profile-image">
                 <h3>Ayush Kumar</h3>
-                <p class="title">Founder & Gardener</p>
-                <p>Hi! I’m Ayush Kumar, a passionate gardener with a deep love for nature, creativity, and sustainability. What started as a hobby quickly grew into a lifelong journey of learning and sharing the joy of growing beautiful, healthy plants.
-                    From designing cozy balcony gardens to cultivating vibrant vegetable patches, I’ve spent [1 years] exploring the art and science of gardening. Through my website, I aim to inspire others by sharing practical tips, creative ideas, and
-                    tried-and-true techniques that make gardening enjoyable and rewarding for everyone — whether you’re a beginner or a seasoned green thumb. Let’s grow something beautiful together! 🌱.</p>
+                <p class="title">Founder &amp; Lead Horticulturist</p>
+                <p style="font-size:0.9rem; text-align:left;">🌿 Hi! I'm Ayush. I'm a nature enthusiast who believes soil and plants bring a vital sense of calm and health into our daily lives. I spent years experimenting with terrace gardening methods, learning what containers, soil mixes, and watering routines work best. I started ZENGardening to compile all this practical knowledge in one easy-to-use platform. Let's grow together! 🌱</p>
             </div>
         </section>
 
         <section class="contact-cta">
-            <h2>Get in Touch!</h2>
-            <p>Have questions or suggestions? We'd love to hear from you!</p>
-            <p><a href="contact.html" class="button">Contact Us</a></p>
+            <h2>Have Questions or Suggestions?</h2>
+            <p>We'd love to assist you. Get in touch with our team today!</p>
+            <a href="/contact" class="button"><i class="fas fa-envelope"></i> Contact Our Team</a>
         </section>
     </main>
 
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>About Terrace Gardening</h3>
-                <p>Providing resources and courses to help you create your dream terrace garden.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🌿 ZENGardening</h4>
+                <p>Helping urban gardeners create beautiful green spaces on balconies and terrace properties.</p>
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: info@terracegardening.com</p>
-                <p>Phone: +91 [Your Phone Number]</p>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/blog">Blogs</a>
+                <a href="/contact">Contact</a>
+                <a href="/about">About Us</a>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="blogs.html">Blogs</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
-                </ul>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms &amp; Conditions</a>
             </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://facebook.com" target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22,12A10,10,0,1,0,10,22V14H7v-2h3V9a3,3,0,0,1,3-3h2v2H13a1,1,0,0,0-1,1v2h3l-1,2H12v8A10,10,0,0,0,22,12Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com" target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="3.2"/><path d="M15.5,2h-7A6.5,6.5,0,0,0,2,8.5v7A6.5,6.5,0,0,0,8.5,22h7A6.5,6.5,0,0,0,22,15.5v-7A6.5,6.5,0,0,0,15.5,2Zm3.5,13.5A3.5,3.5,0,0,1,15.5,19h-7A3.5,3.5,0,0,1,5,15.5v-7A3.5,3.5,0,0,1,8.5,5h7A3.5,3.5,0,0,1,19,8.5Zm1-8a1,1,0,1,1-1,1A1,1,0,0,1,20,5.5Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com" target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22,5.2a8.2,8.2,0,0,1-2.3.6,4.1,4.1,0,0,0,1.8-2.3,8.3,8.3,0,0,1-2.6,1A4.1,4.1,0,0,0,11,8.3a11.7,11.7,0,0,1-8.5-4.3A4.1,4.1,0,0,0,4,10.7a4,4,0,0,1-1.9-.5V10a4.1,4.1,0,0,0,3.3,4,4,4,0,0,1-1.1.1,3.9,3.9,0,0,1-.8-.1,4.1,4.1,0,0,0,3.8,2.8A8.2,8.2,0,0,1,2,18.5,11.5,11.5,0,0,0,8.3,20,11.6,11.6,0,0,0,20,8.3c0-.2,0-.3,0-.5A8,8,0,0,0,22,5.2Z"/>
-                        </svg>
-                    </a>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p>ayushkrsingh008@gmail.com</p>
+                <div class="footer-social-links" style="margin-top: 10px;">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-
-            <div class="copyright">
-                &copy; 2025 Terrace Gardening. All rights reserved.
-            </div>
+        </div>
+        <div class="footer-copy">&copy; 2025 ZENGardening. All rights reserved.</div>
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
+</body>
 </html>

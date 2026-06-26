@@ -1,93 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms and Conditions - Terrace Gardening</title>
+    <title>Terms &amp; Conditions – ZENGardening</title>
+    <meta name="description" content="Read the Terms and Conditions of ZENGardening. Understand the rules for accessing our tutorials, checklists, and video courses.">
+    
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="script.js"></script>
 </head>
-
 <body>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">🌿 ZENGardening</div>
+        <div class="logo" onclick="window.location.href='/'">🌿 ZENGardening</div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html" class="login-btn">Login</a></li>
-            <li class="menu-icon" onclick="toggleMenu()">☰</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/blog">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login" class="login-btn" id="nav-btn">Login</a></li>
+            <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+            <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
         </ul>
     </nav>
 
-    <main class="terms-page">
-        <section class="terms-container">
-            <h1>Terms and Conditions</h1>
+    <!-- COLLAPSIBLE SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <!-- Generated Dynamically based on Auth State -->
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
-            <p><strong>Last Updated:</strong> 05-04-2005</p>
-
+    <!-- MAIN TERMS CONTENT -->
+    <main class="text-page-container">
+        <article class="text-card">
+            <h1>Terms &amp; Conditions</h1>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:20px;"><strong>Last Updated:</strong> June 25, 2026</p>
+            
             <h2>1. Acceptance of Terms</h2>
-            <p>By accessing and using the Terrace Gardening website (the "Website"), you agree to be bound by these Terms and Conditions (the "Terms"). If you do not agree to these Terms, please do not use the Website.</p>
-
-            <h2>2. Use of the Website</h2>
-            <p>You may use the Website for lawful purposes only. You are prohibited from using the Website in any way that could damage, disable, overburden, or impair the Website or interfere with any other party's use and enjoyment of the Website.</p>
-
-            <h2>3. Intellectual Property</h2>
-            <p>The content, design, graphics, and other materials on the Website are protected by copyright and other intellectual property laws. You may not reproduce, modify, distribute, or otherwise use any content from the Website without the prior written
-                consent of Terrace Gardening.</p>
-
-            <h2>4. Disclaimer of Warranties</h2>
-            <p>The Website is provided on an "as is" and "as available" basis without any warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement. Terrace
-                Gardening does not warrant that the Website will be uninterrupted or error-free.</p>
-
-            <h2>5. Limitation of Liability</h2>
-            <p>To the fullest extent permitted by applicable law, Terrace Gardening shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the Website.</p>
-
+            <p>By accessing and using ZENGardening (the "Website"), you agree to be bound by these Terms and Conditions. If you do not agree to all terms, you are prohibited from using this Website.</p>
+            
+            <h2>2. Use of Site Content</h2>
+            <p>All materials published on ZENGardening (including tutorials, guides, videos, PDFs, and checklists) are for your personal, non-commercial use only. You may not copy, reproduce, re-upload, distribute, or sell any contents without express written consent from Ayush Kumar.</p>
+            
+            <h2>3. Premium Course Enrollments</h2>
+            <p>When you enroll in a premium course (such as Rose Gardening or Chilli Pepper Power), you receive a personal, non-exclusive, non-transferable license to access the course content. All transactions logged in the LocalStorage are mock transactions for demonstration and practice purposes.</p>
+            
+            <h2>4. Intellectual Property</h2>
+            <p>The code structures, stylesheets, logos, and layouts are the exclusive property of ZENGardening. Violating these copyrights will result in immediate termination of account access.</p>
+            
+            <h2>5. Disclaimer of Warranties</h2>
+            <p>ZENGardening is provided on an "as is" basis. We make no warranties, expressed or implied, regarding horticultural success, plant yields, or weather outcomes. Nature is complex, and individual results will vary!</p>
+            
             <h2>6. Governing Law</h2>
-            <p>These Terms shall be governed by and construed in accordance with the laws of [Your State/Country, e.g., India]. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located
-                in [Your City, e.g., Your City, India].</p>
-
-            <h2>7. Changes to These Terms</h2>
-            <p>Terrace Gardening reserves the right to modify these Terms at any time without prior notice. Your continued use of the Website following the posting of any changes constitutes your acceptance of such changes.</p>
-
-            <h2>8. Contact Us</h2>
-            <p>If you have any questions about these Terms, please contact us at: <a href="mailto:info@zengardening.com">info@zengardening.com</a></p>
-
-            <p><strong>Thank you for using Terrace Gardening!</strong></p>
-        </section>
+            <p>These terms are governed by the laws of India. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts in Roorkee, Uttarakhand, India.</p>
+            
+            <h2>7. Contact Information</h2>
+            <p>If you have any questions or require clarifications regarding these terms, please contact us at: <a href="mailto:ayushkrsingh008@gmail.com" style="color:var(--accent); font-weight:600;">ayushkrsingh008@gmail.com</a></p>
+        </article>
     </main>
 
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>About Terrace Gardening</h3>
-                <p>Providing resources and courses to help you create your dream terrace garden.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🌿 ZENGardening</h4>
+                <p>Helping urban gardeners create beautiful green spaces on balconies and terrace properties.</p>
             </div>
-
-
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: info@terracegardening.com</p>
-                <p>Phone: +91 [Your Phone Number]</p>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                    </ul>
-                </div>
-
-                <div class="copyright">
-                    &copy; 2025 Terrace Gardening. All rights reserved.
-                </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/blog">Blogs</a>
+                <a href="/contact">Contact</a>
+                <a href="/about">About Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms &amp; Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p>ayushkrsingh008@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-copy">&copy; 2025 ZENGardening. All rights reserved.</div>
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('zengardining-authtoken');
+            const navBtn = document.getElementById('nav-btn');
+            const sidebar = document.getElementById('sidebar');
+            
+            if (token) {
+                if (navBtn) {
+                    navBtn.innerText = 'Dashboard';
+                    navBtn.href = '/home';
+                }
+                if (sidebar) {
+                    sidebar.innerHTML = `
+                        <div class="sidebar-header">
+                            <div class="sidebar-logo">🌿 ZENGardening</div>
+                            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                        </div>
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                            <a class="sidebar-item" href="/home"><i class="fas fa-th-large"></i> Dashboard</a>
+                            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                            <a class="sidebar-item" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </nav>
+                    `;
+                }
+            } else {
+                if (sidebar) {
+                    sidebar.innerHTML = `
+                        <div class="sidebar-header">
+                            <div class="sidebar-logo">🌿 ZENGardening</div>
+                            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                        </div>
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                            <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+                        </nav>
+                    `;
+                }
+            }
+        });
+
+        function logoutUser() {
+            localStorage.removeItem('zengardining-authtoken');
+            window.location.reload();
+        }
+    </script>
+</body>
 </html>

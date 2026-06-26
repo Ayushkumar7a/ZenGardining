@@ -12,30 +12,22 @@ function checkforLogin() {
 
 checkforLogin();
 
-async function getUserDetails() {
-    const token = localStorage.getItem('zengardining-authtoken');
-    try {
-        const response = await fetch("http://localhost:8888/api/auth/getuser", {
-            method: "GET",
-            headers: {
-                'auth-token': token
-            }
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-
+function getUserDetails() {
+    const userStr = localStorage.getItem('zengardining-user');
+    if (userStr) {
+        try {
+            const user = JSON.parse(userStr);
             const username = document.getElementById('username');
             const useremail = document.getElementById('usermail');
-
-            username.innerText = result.user.name;
-            useremail.innerText = result.user.email;
+            if (username && user.name) {
+                username.innerText = user.name;
+            }
+            if (useremail && user.email) {
+                useremail.innerText = user.email;
+            }
+        } catch (error) {
+            console.error('Error parsing user details from localStorage:', error);
         }
-
-    } catch (error) {
-        console.error('somthing went wrong:', error);
-        alert('error ', error)
     }
 }
 

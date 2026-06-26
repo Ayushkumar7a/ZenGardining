@@ -1,114 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Terrace Gardening</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>Contact Us – ZENGardening</title>
+    <meta name="description" content="Get in touch with ZENGardening. We'd love to hear from you.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#f0f4f0;--bg2:#fff;--navbar-bg:#fff;--text:#1a1a1a;--text-muted:#6b7280;--border:#e5e7eb;--card-bg:#fff;--card-shadow:0 4px 24px rgba(0,0,0,.07);--accent:#2e7d32;--accent2:#4caf50;--accent-glow:rgba(76,175,80,.18);--sidebar-bg:#1a2e1a;--sidebar-text:#d4e8d4;--btn-primary:linear-gradient(135deg,#2e7d32,#4caf50);--transition:.3s cubic-bezier(.4,0,.2,1);}
+        [data-theme="dark"]{--bg:#0f1a0f;--bg2:#162016;--navbar-bg:#0f1a0f;--text:#e8f5e9;--text-muted:#9cbe9c;--border:#2a3d2a;--card-bg:#1a2e1a;--card-shadow:0 4px 24px rgba(0,0,0,.4);}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);}
+        .navbar{position:sticky;top:0;z-index:500;background:var(--navbar-bg);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px;backdrop-filter:blur(12px);box-shadow:0 2px 12px rgba(0,0,0,.05);}
+        .logo{font-size:1.3rem;font-weight:700;color:var(--accent);}
+        .nav-links{list-style:none;display:flex;align-items:center;gap:6px;}
+        .nav-links li a{color:var(--text);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all var(--transition);}
+        .nav-links li a:hover,.nav-links li a.active{background:var(--accent-glow);color:var(--accent);}
+        .login-btn{background:var(--btn-primary)!important;color:#fff!important;border-radius:8px!important;padding:8px 18px!important;}
+        .menu-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;font-size:1.1rem;color:var(--text);border:1px solid var(--border);transition:all var(--transition);}
+        .menu-icon:hover{background:var(--accent-glow);color:var(--accent);}
+        .sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:var(--sidebar-bg);z-index:1000;display:flex;flex-direction:column;transition:left .35s cubic-bezier(.4,0,.2,1);box-shadow:4px 0 40px rgba(0,0,0,.35);}
+        .sidebar.active{left:0;}
+        .sidebar-header{padding:28px 24px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+        .sidebar-logo{font-size:1.1rem;font-weight:700;color:#81c784;margin-bottom:4px;}
+        .sidebar-tagline{font-size:.75rem;color:#6caa6c;}
+        .sidebar-nav{flex:1;padding:16px 12px;overflow-y:auto;}
+        .sidebar-item{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:12px;cursor:pointer;color:#d4e8d4;font-size:.9rem;font-weight:500;transition:all .2s;margin-bottom:4px;text-decoration:none;}
+        .sidebar-item:hover{background:rgba(76,175,80,.18);color:#81c784;transform:translateX(4px);}
+        .sidebar-item.active-item{background:linear-gradient(135deg,rgba(76,175,80,.3),rgba(46,125,50,.2));color:#a5d6a7;border-left:3px solid #4caf50;}
+        .sidebar-item i{width:18px;text-align:center;}
+        .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:900;display:none;}
+        .overlay.active{display:block;}
+
+        /* HERO */
+        .page-hero{background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 40%,#388e3c 100%);padding:72px 28px 80px;text-align:center;position:relative;overflow:hidden;}
+        .page-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+        .page-hero-content{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+        .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:12px;}
+        .page-hero p{color:rgba(255,255,255,.8);font-size:1.05rem;}
+
+        /* CONTACT LAYOUT */
+        .contact-wrapper{max-width:1100px;margin:-48px auto 0;padding:0 28px 48px;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;position:relative;z-index:10;}
+        @media(max-width:900px){.contact-wrapper{grid-template-columns:1fr;margin-top:-30px;}}
+
+        /* FORM CARD */
+        .form-card{background:var(--card-bg);border-radius:24px;padding:40px;border:1px solid var(--border);box-shadow:var(--card-shadow);}
+        .form-card h2{font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+        .form-card>p{font-size:.88rem;color:var(--text-muted);margin-bottom:28px;}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+        @media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+        .form-group{margin-bottom:16px;}
+        .form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;}
+        .form-group input,.form-group textarea,.form-group select{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+        .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent2);box-shadow:0 0 0 3px var(--accent-glow);}
+        .form-group textarea{resize:vertical;min-height:140px;}
+        .form-group select option{background:var(--bg2);}
+        .submit-btn{width:100%;background:var(--btn-primary);color:#fff;border:none;padding:15px;border-radius:14px;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:opacity .2s,transform .2s;}
+        .submit-btn:hover{opacity:.88;transform:translateY(-2px);}
+        .form-success{display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:14px;padding:20px;text-align:center;color:#2e7d32;font-weight:600;margin-top:16px;}
+
+        /* INFO SIDEBAR */
+        .info-col{display:flex;flex-direction:column;gap:20px;}
+        .info-card{background:var(--card-bg);border-radius:20px;padding:28px;border:1px solid var(--border);box-shadow:var(--card-shadow);}
+        .info-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px;}
+        .info-item:last-child{margin-bottom:0;}
+        .info-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+        .info-icon.green{background:#e8f5e9;color:#2e7d32;}
+        .info-icon.blue{background:#e3f2fd;color:#1565c0;}
+        .info-icon.orange{background:#fff3e0;color:#e65100;}
+        .info-text h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+        .info-text p,.info-text a{font-size:.83rem;color:var(--text-muted);text-decoration:none;display:block;line-height:1.5;}
+        .info-text a:hover{color:var(--accent);}
+
+        /* MAP CARD */
+        .map-card{background:var(--card-bg);border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--card-shadow);}
+        .map-placeholder{height:180px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2e7d32;font-size:2rem;}
+        .map-placeholder p{font-size:.85rem;color:#4caf50;font-weight:600;margin-top:8px;}
+        .map-info{padding:20px 24px;}
+        .map-info h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+        .map-info p{font-size:.82rem;color:var(--text-muted);}
+
+        /* SOCIAL CARD */
+        .social-card{background:linear-gradient(135deg,#1b5e20,#2e7d32);border-radius:20px;padding:28px;}
+        .social-card h3{color:#fff;font-size:1rem;font-weight:700;margin-bottom:6px;}
+        .social-card p{color:rgba(255,255,255,.75);font-size:.82rem;margin-bottom:20px;}
+        .social-btns{display:flex;gap:10px;flex-wrap:wrap;}
+        .social-btn{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s;}
+        .social-btn.fb{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
+        .social-btn.ig{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
+        .social-btn.tw{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
+        .social-btn:hover{background:rgba(255,255,255,.25);}
+
+        /* FAQ */
+        .faq-section{max-width:1100px;margin:0 auto;padding:0 28px 48px;}
+        .faq-section h2{font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+        .faq-item{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;margin-bottom:12px;overflow:hidden;box-shadow:var(--card-shadow);}
+        .faq-q{padding:18px 24px;font-size:.92rem;font-weight:600;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .2s;}
+        .faq-q:hover{background:var(--accent-glow);}
+        .faq-q i{color:var(--accent);transition:transform .3s;font-size:.85rem;}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s;}
+        .faq-a p{padding:0 24px 18px;font-size:.87rem;color:var(--text-muted);line-height:1.7;}
+        .faq-item.open .faq-q i{transform:rotate(180deg);}
+        .faq-item.open .faq-a{max-height:200px;}
+
+        /* FOOTER */
+        footer{background:#1a2e1a;color:#c8e6c9;padding:48px 28px 24px;}
+        .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:36px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08);}
+        .footer-col h4{color:#81c784;font-size:.9rem;font-weight:700;margin-bottom:16px;}
+        .footer-col p,.footer-col a{font-size:.83rem;color:#9cbe9c;text-decoration:none;display:block;margin-bottom:8px;transition:color .2s;}
+        .footer-col a:hover{color:#a5d6a7;}
+        .footer-social-links{display:flex;gap:12px;margin-top:8px;}
+        .footer-social-links a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:#9cbe9c;transition:all .2s;}
+        .footer-social-links a:hover{background:#2e7d32;color:#fff;}
+        .footer-copy{text-align:center;margin-top:20px;font-size:.78rem;color:#6caa6c;}
+        #goTopBtn{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--btn-primary);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(46,125,50,.45);z-index:400;transition:transform .2s;}
+        #goTopBtn:hover{transform:translateY(-3px);}
+        .theme-btn{background:transparent;border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+        .theme-btn:hover{background:var(--accent-glow);color:var(--accent);}
+
+        /* RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .nav-links li { display: none; }
+            .nav-links li:has(.theme-btn),
+            .nav-links li:has(#themeBtn),
+            .nav-links li:has(.menu-icon) { display: block; }
+            .sidebar { width: 260px; }
+            .contact-section { padding: 40px 20px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+        }
+        @media (max-width: 580px) {
+            .page-hero { padding: 56px 16px 60px; }
+            .page-hero h1 { font-size: 1.8rem; }
+            .page-hero p { font-size: 0.95rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="logo">🌿 ZENGardening</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html" class="login-btn">Login</a></li>
-            <li class="menu-icon" onclick="toggleMenu()">☰</li>
-        </ul>
-    </nav>
-    <div id="sidebar">
-        <a href="#">My Account</a>
-        <a href="#">All Services</a>
-        <a href="#">Dashboard</a>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">🌿 ZENGardening</div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/blog">Blogs</a></li>
+        <li><a href="/contact" class="active">Contact</a></li>
+        <li><a href="/login" class="login-btn">Login</a></li>
+        <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+        <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
+    </ul>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">🌿 ZENGardening</div>
+        <div class="sidebar-tagline">Grow beautiful. Live green.</div>
     </div>
+    <nav class="sidebar-nav">
+        <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+        <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+        <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+        <a class="sidebar-item active-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+        <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+        <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+    </nav>
+</div>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
+<!-- HERO -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <h1>Let's Talk Gardening 🌱</h1>
+        <p>Have a question, suggestion, or just want to say hello? We're all ears.</p>
+    </div>
+</section>
 
-    <main class="contact-page">
-        <h1>Contact Us</h1>
-        <p>We'd love to hear from you! Please fill out the form below or use the other contact methods provided.</p>
+<!-- CONTACT GRID -->
+<div class="contact-wrapper">
+    <!-- FORM -->
+    <div class="form-card">
+        <h2>Send Us a Message</h2>
+        <p>Fill out the form below and we'll get back to you within 24 hours.</p>
 
-        <section class="contact-form">
-            <h2>Send us a message</h2>
-            <form id="contactForm" action="/submit-contact" method="post">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-                <label for="email">Your Email:</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-                <label for="subject">Subject:</label>
-                <input type="text" id="subject" name="subject" placeholder="Subject">
-
-                <label for="message">Your Message:</label>
-                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-
-                <button type="submit">Submit Message</button>
-            </form>
-        </section>
-
-        <section class="contact-info">
-            <h2>Other ways to connect</h2>
-            <p>Email: <a href="mailto:info@zengardening.com">info@zengardening.com</a></p>
-            <p>Phone: +91 8207428343 </p>
-            <p>Address: COER University roorkee uttrakhand
-            </p>
-
-
-    </main>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>About Terrace Gardening</h3>
-                <p>Providing resources and courses to help you create your dream terrace garden.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: ayushkrsingh008@gmail.com </p>
-                <p>Phone: +91 8207428343</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="blogs.html">Blogs</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms & Conditions</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://facebook.com" target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22,12A10,10,0,1,0,10,22V14H7v-2h3V9a3,3,0,0,1,3-3h2v2H13a1,1,0,0,0-1,1v2h3l-1,2H12v8A10,10,0,0,0,22,12Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com" target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="3.2"/><path d="M15.5,2h-7A6.5,6.5,0,0,0,2,8.5v7A6.5,6.5,0,0,0,8.5,22h7A6.5,6.5,0,0,0,22,15.5v-7A6.5,6.5,0,0,0,15.5,2Zm3.5,13.5A3.5,3.5,0,0,1,15.5,19h-7A3.5,3.5,0,0,1,5,15.5v-7A3.5,3.5,0,0,1,8.5,5h7A3.5,3.5,0,0,1,19,8.5Zm1-8a1,1,0,1,1-1,1A1,1,0,0,1,20,5.5Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com" target="_blank">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22,5.2a8.2,8.2,0,0,1-2.3.6,4.1,4.1,0,0,0,1.8-2.3,8.3,8.3,0,0,1-2.6,1A4.1,4.1,0,0,0,11,8.3a11.7,11.7,0,0,1-8.5-4.3A4.1,4.1,0,0,0,4,10.7a4,4,0,0,1-1.9-.5V10a4.1,4.1,0,0,0,3.3,4,4,4,0,0,1-1.1.1,3.9,3.9,0,0,1-.8-.1,4.1,4.1,0,0,0,3.8,2.8A8.2,8.2,0,0,1,2,18.5,11.5,11.5,0,0,0,8.3,20,11.6,11.6,0,0,0,20,8.3c0-.2,0-.3,0-.5A8,8,0,0,0,22,5.2Z"/>
-                        </svg>
-                    </a>
+        <form id="contactForm" onsubmit="submitContact(event)" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" placeholder="Ayush" id="cFirstName" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Kumar" id="cLastName">
                 </div>
             </div>
-
-            <div class="copyright">
-                &copy; 2025 Terrace Gardening. All rights reserved.
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="you@example.com" id="cEmail" required>
             </div>
-    </footer>
+            <div class="form-group">
+                <label>Phone (optional)</label>
+                <input type="tel" placeholder="+91 8207428343" id="cPhone">
+            </div>
+            <div class="form-group">
+                <label>Topic</label>
+                <select id="cTopic">
+                    <option value="">Select a topic…</option>
+                    <option>Course Enquiry</option>
+                    <option>Gardening Advice</option>
+                    <option>Technical Support</option>
+                    <option>Partnership / Collaboration</option>
+                    <option>Feedback & Suggestions</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Your Message</label>
+                <textarea placeholder="Tell us how we can help…" id="cMessage" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle" style="font-size:2rem;margin-bottom:8px;"></i><br>
+            Message sent! We'll get back to you within 24 hours. 🌿
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- INFO COL -->
+    <div class="info-col">
+        <div class="info-card">
+            <div class="info-item">
+                <div class="info-icon green"><i class="fas fa-envelope"></i></div>
+                <div class="info-text">
+                    <h4>Email Us</h4>
+                    <a href="mailto:ayushkrsingh008@gmail.com">ayushkrsingh008@gmail.com</a>
+                    <p>We reply within 24 hours</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon blue"><i class="fas fa-phone-alt"></i></div>
+                <div class="info-text">
+                    <h4>Call Us</h4>
+                    <a href="tel:+918207428343">+91 8207428343</a>
+                    <p>Mon – Sat, 9am – 6pm IST</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon orange"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="info-text">
+                    <h4>Visit Us</h4>
+                    <p>COER University</p>
+                    <p>Roorkee, Uttarakhand, India</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-card">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>COER University, Roorkee</p>
+            </div>
+            <div class="map-info">
+                <h4>📍 Find Us Here</h4>
+                <p>COER University, NH-58, Roorkee, Uttarakhand 247667</p>
+            </div>
+        </div>
+
+        <div class="social-card">
+            <h3>Follow Our Journey 🌿</h3>
+            <p>Stay updated with gardening tips & seasonal guides.</p>
+            <div class="social-btns">
+                <a href="https://facebook.com" target="_blank" class="social-btn fb"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://instagram.com" target="_blank" class="social-btn ig"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://twitter.com" target="_blank" class="social-btn tw"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+    <h2><i class="fas fa-question-circle" style="color:var(--accent)"></i> Frequently Asked Questions</h2>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How long does it take to get a reply? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><p>We aim to reply to all emails and messages within 24 hours on business days. For urgent queries, please call us directly.</p></div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I get personalised gardening advice? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><p>Absolutely! Our team loves helping gardeners with personalised advice. Just describe your setup and plants in the message field and we'll tailor a response just for you.</p></div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you offer course refunds? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><p>Yes, we offer a 7-day money-back guarantee on all courses. Simply contact us with your order details and we'll process the refund promptly.</p></div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I collaborate or write for ZENGardening? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><p>We love collaborating with passionate gardeners! Select "Partnership / Collaboration" in the topic field and tell us about yourself. We'll get in touch soon.</p></div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col"><h4>🌿 ZENGardening</h4><p>Helping urban gardeners create beautiful green spaces.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/blog">Blogs</a><a href="/contact">Contact</a><a href="/about">About Us</a></div>
+        <div class="footer-col"><h4>Legal</h4><a href="/privacy">Privacy Policy</a><a href="/terms">Terms & Conditions</a></div>
+        <div class="footer-col"><h4>Connect</h4><p>ayushkrsingh008@gmail.com</p><div class="footer-social-links"><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></div></div>
+    </div>
+    <div class="footer-copy">© 2025 ZENGardening. All rights reserved. Made with 🌿 and passion.</div>
+</footer>
+<button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+function toggleMenu(){document.getElementById('sidebar').classList.toggle('active');document.getElementById('overlay').classList.toggle('active');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('active');document.getElementById('overlay').classList.remove('active');}
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+window.addEventListener('scroll',function(){const b=document.getElementById('goTopBtn');b.style.display=window.scrollY>200?'flex':'none';});
+function submitContact(e){
+    e.preventDefault();
+    const name=document.getElementById('cFirstName').value.trim();
+    const lastName=document.getElementById('cLastName').value.trim();
+    const email=document.getElementById('cEmail').value.trim();
+    const phone=document.getElementById('cPhone').value.trim();
+    const topic=document.getElementById('cTopic').value;
+    const msg=document.getElementById('cMessage').value.trim();
+    if(!name||!email||!msg){alert('Please fill in required fields.');return;}
+    const btn=document.getElementById('submitBtn');
+    btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending…';btn.disabled=true;
+    
+    // Save to localStorage
+    const messages = JSON.parse(localStorage.getItem('zen-messages')) || [];
+    messages.unshift({
+        from: name + (lastName ? ' ' + lastName : ''),
+        email: email,
+        topic: topic || 'General Enquiry',
+        preview: msg,
+        received: 'Just now',
+        status: 'Unread'
+    });
+    localStorage.setItem('zen-messages', JSON.stringify(messages));
+    
+    setTimeout(()=>{
+        document.getElementById('contactForm').style.display='none';
+        document.getElementById('formSuccess').style.display='block';
+    },1200);
+}
+function toggleFaq(el){
+    const item=el.closest('.faq-item');
+    document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==item)i.classList.remove('open');});
+    item.classList.toggle('open');
+}
+function toggleTheme(){const h=document.documentElement;const d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');document.getElementById('themeBtn').innerHTML=d?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>';localStorage.setItem('zen-theme',d?'light':'dark');}
+(function(){const s=localStorage.getItem('zen-theme');if(s==='dark'){document.documentElement.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',function(){const b=document.getElementById('themeBtn');if(b)b.innerHTML='<i class="fas fa-sun"></i>';});}})();
+</script>
 </body>
-
 </html>

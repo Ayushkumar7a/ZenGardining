@@ -1,106 +1,331 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Enroll in a Gardening Course</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f0f8f5;
-            padding: 2rem;
-            color: #333;
-        }
-        
-        .enroll-container {
-            background: #fff;
-            max-width: 600px;
-            margin: auto;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            text-align: center;
-            color: #2e7d32;
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            font-weight: bold;
-            margin-top: 1rem;
-            display: block;
-        }
-        
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
-        
-        button {
-            background-color: #2e7d32;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        button:hover {
-            background-color: #1b5e20;
-        }
-        
-        .back-link {
-            display: inline-block;
-            margin-top: 1.5rem;
-            text-decoration: none;
-            color: #2e7d32;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Enrollment – ZENGardening</title>
+    <meta name="description" content="Securely enroll in a premium ZENGardening course. Select payment methods and start your gardening journey.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
 </head>
-
 <body>
 
-    <div class="enroll-container">
-        <h1>🌼 Enroll in a Gardening Course</h1>
-        <form action="#" method="post">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required />
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='/'">🌿 ZENGardening</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/blog">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login" class="login-btn" id="nav-btn">Login</a></li>
+            <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+            <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
+        </ul>
+    </nav>
 
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required />
+    <!-- COLLAPSIBLE SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <!-- Generated Dynamically based on Auth State -->
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
-            <label for="course">Select Course:</label>
-            <select id="course" name="course" required>
-        <option value="">-- Choose a Course --</option>
-        <option value="rose">Rose Gardening</option>
-        <option value="dahlia">Dahlia Course</option>
-        <option value="tulip">Tulip Course</option>
-        <option value="sunflower">Sunflower Course</option>
-        <option value="lavender">Lavender Course</option>
-        <option value="marigold">Marigold Course</option>
-      </select>
+    <!-- MAIN CHECKOUT CARD -->
+    <main class="login-page">
+        <section class="neumorphic-card" style="max-width: 500px; text-align: left;">
+            <h2 style="text-align: center; color: var(--accent); margin-bottom: 8px;"><i class="fas fa-graduation-cap"></i> Course Enrollment</h2>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px;">Start learning practical organic gardening techniques today.</p>
+            
+            <form id="enrollForm" onsubmit="handleEnrollment(event)">
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Full Name</label>
+                    <input type="text" id="eName" class="neumorphic-input" placeholder="Ayush Kumar" required style="margin-bottom:0;">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Email Address</label>
+                    <input type="email" id="eEmail" class="neumorphic-input" placeholder="you@example.com" required style="margin-bottom:0;">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Select Course</label>
+                    <select id="eCourse" class="neumorphic-input" required style="margin-bottom:0; background: var(--bg); cursor: pointer;" onchange="updatePrice()">
+                        <!-- Loaded dynamically -->
+                    </select>
+                </div>
 
-            <label for="message">Message (optional):</label>
-            <textarea id="message" name="message" rows="4"></textarea>
+                <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size:0.9rem; font-weight:600; color:var(--text);">Course Fee:</span>
+                    <span style="font-size:1.15rem; font-weight:800; color:var(--accent);" id="coursePrice">₹0</span>
+                </div>
 
-            <button type="submit">Submit Enrollment</button>
-        </form>
-        <a class="back-link" href="index.html">⬅ Back to Home</a>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Payment Method</label>
+                    <select id="ePayment" class="neumorphic-input" required style="margin-bottom:0; background: var(--bg); cursor: pointer;">
+                        <option value="UPI QR">🌿 Scan UPI QR Code</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="neumorphic-button" style="margin-top: 10px;"><i class="fas fa-check-circle"></i> Complete Enrollment</button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 18px;">
+                <a href="/" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.85rem;">&larr; Back to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- PAYMENT QR CODE MODAL -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content" style="max-width: 440px;">
+            <div class="modal-header-section">
+                <h2><i class="fas fa-qrcode"></i> Scan to Pay</h2>
+                <span class="close" onclick="closePaymentModal()">&times;</span>
+            </div>
+            <div class="modal-info-wrap" style="text-align: center; padding: 24px;">
+                <p style="font-size: 0.85rem; margin-bottom: 16px; color: var(--text-muted);">
+                    Scan the UPI QR code below using Google Pay, PhonePe, Paytm or any UPI app to make the payment of <strong id="qrAmountLabel" style="color: var(--accent); font-size: 1rem;">₹0</strong>.
+                </p>
+                <div style="background: #fff; padding: 16px; border-radius: 16px; display: inline-block; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 16px; border: 1px solid var(--border);">
+                    <img id="upiQrCode" src="" alt="UPI Payment QR Code" style="width: 200px; height: 200px; display: block;">
+                </div>
+                <div style="font-size: 0.78rem; font-weight: 500; color: var(--text-muted); background: var(--bg); padding: 8px 12px; border-radius: 8px; display: inline-block; margin-bottom: 20px;">
+                    UPI ID: <strong>ayushkrsingh008@okaxis</strong>
+                </div>
+                
+                <div class="form-group" style="text-align: left; margin-bottom: 16px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; margin-bottom: 6px; display: block;">Enter Transaction Ref ID / UTR</label>
+                    <input type="text" id="upiTxnId" class="neumorphic-input" placeholder="12-digit number (e.g. 518426...)" required style="margin-bottom:0;" maxlength="16">
+                    <small style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; display: block;">Enter the 12-digit transaction ID from your payment receipt.</small>
+                </div>
+                
+                <button type="button" class="neumorphic-button" onclick="confirmPayment()"><i class="fas fa-check-circle"></i> Verify &amp; Complete</button>
+            </div>
+        </div>
     </div>
 
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🌿 ZENGardening</h4>
+                <p>Helping urban gardeners create beautiful green spaces on balconies and terrace properties.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/blog">Blogs</a>
+                <a href="/contact">Contact</a>
+                <a href="/about">About Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms &amp; Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p>ayushkrsingh008@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-copy">&copy; 2025 ZENGardening. All rights reserved.</div>
+    </footer>
 
+    <button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        const courses = JSON.parse(localStorage.getItem('zen-courses')) || [];
+
+        function initNavbarSidebar() {
+            const token = localStorage.getItem('zengardining-authtoken');
+            const navBtn = document.getElementById('nav-btn');
+            const sidebar = document.getElementById('sidebar');
+            
+            if (token) {
+                if (navBtn) {
+                    navBtn.innerText = 'Dashboard';
+                    navBtn.href = '/home';
+                }
+                if (sidebar) {
+                    sidebar.innerHTML = `
+                        <div class="sidebar-header">
+                            <div class="sidebar-logo">🌿 ZENGardening</div>
+                            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                        </div>
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                            <a class="sidebar-item" href="/home"><i class="fas fa-th-large"></i> Dashboard</a>
+                            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                            <a class="sidebar-item" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </nav>
+                    `;
+                }
+                // Fetch details to autofill
+                getUserDetails(token);
+            } else {
+                if (sidebar) {
+                    sidebar.innerHTML = `
+                        <div class="sidebar-header">
+                            <div class="sidebar-logo">🌿 ZENGardening</div>
+                            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                        </div>
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                            <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+                        </nav>
+                    `;
+                }
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('zengardining-authtoken');
+            window.location.reload();
+        }
+
+        function getUserDetails(token) {
+            const userStr = localStorage.getItem('zengardining-user');
+            if (userStr) {
+                try {
+                    const user = JSON.parse(userStr);
+                    const nameInput = document.getElementById('eName');
+                    const emailInput = document.getElementById('eEmail');
+                    if (nameInput && user.name) nameInput.value = user.name;
+                    if (emailInput && user.email) emailInput.value = user.email;
+                } catch (error) {
+                    console.error('Error loading user profile:', error);
+                }
+            }
+        }
+
+        function initCoursesSelect() {
+            const select = document.getElementById('eCourse');
+            if (!select) return;
+            
+            const published = courses.filter(c => c.status === 'Published');
+            
+            select.innerHTML = '<option value="">-- Choose a Course --</option>' + published.map(c => `
+                <option value="${c.title}">${c.title}</option>
+            `).join('');
+            
+            // Read course from URL query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseTitle = urlParams.get('course');
+            if (courseTitle) {
+                select.value = courseTitle;
+            }
+            updatePrice();
+        }
+
+        function updatePrice() {
+            const select = document.getElementById('eCourse');
+            const priceLabel = document.getElementById('coursePrice');
+            if (!select || !priceLabel) return;
+            
+            const selected = select.value;
+            const course = courses.find(c => c.title === selected);
+            if (course) {
+                priceLabel.innerText = `₹${course.price}`;
+            } else {
+                priceLabel.innerText = '₹0';
+            }
+        }
+
+        let pendingEnrollment = null;
+
+        function handleEnrollment(e) {
+            e.preventDefault();
+            const name = document.getElementById('eName').value.trim();
+            const email = document.getElementById('eEmail').value.trim();
+            const courseTitle = document.getElementById('eCourse').value;
+            const payment = document.getElementById('ePayment').value;
+            
+            if (!courseTitle) {
+                alert('Please select a course to enroll.');
+                return;
+            }
+            
+            const course = courses.find(c => c.title === courseTitle);
+            if (!course) return;
+            
+            const amount = `₹${course.price}`;
+            const priceNum = course.price;
+            
+            // Store pending enrollment details
+            pendingEnrollment = {
+                student: name,
+                course: courseTitle,
+                amount: amount,
+                method: payment,
+                date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+                status: 'Completed'
+            };
+            
+            // Set up QR modal details
+            document.getElementById('qrAmountLabel').innerText = amount;
+            
+            // Generate real UPI payment URI
+            const upiUri = `upi://pay?pa=ayushkrsingh008@okaxis&pn=ZENGardening&am=${priceNum}&tn=ZENGardening%20Course%20Enrollment`;
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiUri)}`;
+            document.getElementById('upiQrCode').src = qrApiUrl;
+            
+            // Open payment modal
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function confirmPayment() {
+            const txnIdInput = document.getElementById('upiTxnId');
+            const txnId = txnIdInput.value.trim();
+            
+            // Validate UTR / Transaction ID (should be 12-digit number typically)
+            if (!txnId) {
+                alert('Please enter your Transaction Ref ID / UTR.');
+                return;
+            }
+            
+            if (!/^\d{12}$/.test(txnId)) {
+                alert('Please enter a valid 12-digit UTR/Transaction ID.');
+                return;
+            }
+            
+            if (!pendingEnrollment) return;
+            
+            // Add UTR to enrollment data
+            pendingEnrollment.utr = txnId;
+            
+            // Save to LocalStorage orders
+            const orders = JSON.parse(localStorage.getItem('zen-orders')) || [];
+            orders.unshift(pendingEnrollment);
+            localStorage.setItem('zen-orders', JSON.stringify(orders));
+            
+            // Close modal
+            closePaymentModal();
+            
+            alert(`🌿 Payment Confirmed! Transaction UTR: ${txnId}. You have successfully enrolled in ${pendingEnrollment.course}!`);
+            
+            const token = localStorage.getItem('zengardining-authtoken');
+            window.location.href = token ? '/home' : '/login';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initNavbarSidebar();
+            initCoursesSelect();
+        });
+    </script>
 </body>
-
 </html>

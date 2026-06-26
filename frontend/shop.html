@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Shop – ZENGardening | Buy Bihar Grown Plants Online</title>
+    <meta name="description" content="Shop premium plants grown in Bihar's fertile Gangetic plains. Buy litchi, mango, guava, Makhana, vegetables and herbs directly from local farmers.">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
+
+    <style>
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+        /* ── Shop Hero ─────────────────────────────────────────────── */
+        .shop-hero {
+            background: linear-gradient(135deg, #0f2d0f 0%, #1a4a1a 40%, #2e7d32 100%);
+            padding: 80px 28px 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .shop-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234caf50' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .shop-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(76,175,80,0.2);
+            border: 1px solid rgba(76,175,80,0.4);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #81c784;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .shop-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .shop-hero h1 span { color: #81c784; }
+        .shop-hero p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.78);
+            max-width: 580px;
+            margin: 0 auto 32px;
+        }
+        .shop-search-bar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.22);
+            border-radius: 50px;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            box-sizing: border-box;
+        }
+        .shop-search-bar input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            color: #fff;
+            font-family: inherit;
+        }
+        .shop-search-bar input::placeholder { color: rgba(255,255,255,0.55); }
+        .shop-search-bar button {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            border: none;
+            padding: 14px 22px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+        .shop-search-bar button:hover { opacity: 0.85; }
+
+        /* ── Stats Strip ────────────────────────────────────────────── */
+        .shop-stats {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        .shop-stat {
+            flex: 1;
+            min-width: 160px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 28px;
+            border-right: 1px solid var(--border);
+        }
+        .shop-stat:last-child { border-right: none; }
+        .shop-stat-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: var(--accent-glow);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: var(--accent);
+            flex-shrink: 0;
+        }
+        .shop-stat-val { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+        .shop-stat-label { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* ── Main Shop Layout ───────────────────────────────────────── */
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 20px;
+            align-items: start;
+        }
+
+        /* ── Sidebar Filters ────────────────────────────────────────── */
+        .shop-filters {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 80px;
+            box-shadow: var(--card-shadow);
+        }
+        .filter-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .filter-group { margin-bottom: 24px; }
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        .filter-chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        .filter-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 6px 13px;
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            background: transparent;
+            transition: all 0.2s;
+        }
+        .filter-chip:hover, .filter-chip.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+        .price-range-wrap { padding: 4px 0; }
+        .price-range-wrap input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+        .price-range-labels {
+            display: flex; justify-content: space-between;
+            font-size: 0.8rem; color: var(--text-muted);
+            margin-top: 6px;
+        }
+        .filter-sep { height: 1px; background: var(--border); margin: 16px 0; }
+
+        /* ── Shop Grid ──────────────────────────────────────────────── */
+        .shop-content { padding-left: 24px; }
+        .shop-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .shop-result-count {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .shop-result-count strong { color: var(--text); }
+        .shop-sort {
+            display: flex; align-items: center; gap: 8px;
+        }
+        .shop-sort label { font-size: 0.85rem; color: var(--text-muted); }
+        .shop-sort select {
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            padding: 7px 12px;
+            background: var(--card-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+        }
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        /* ── Plant Card ─────────────────────────────────────────────── */
+        .plant-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+        .plant-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(46,125,50,0.18);
+        }
+        .plant-card-badge {
+            position: absolute;
+            top: 12px; left: 12px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        .plant-card-badge.fruit { background: linear-gradient(135deg, #e65100, #ff9800); }
+        .plant-card-badge.grain { background: linear-gradient(135deg, #c6a100, #ffd700); color: #333; }
+        .plant-card-badge.flower { background: linear-gradient(135deg, #ad1457, #f06292); }
+        .plant-card-badge.herb { background: linear-gradient(135deg, #00695c, #26a69a); }
+        .plant-card-badge.pulse { background: linear-gradient(135deg, #4a148c, #9c27b0); }
+        .plant-card-wish {
+            position: absolute; top: 12px; right: 12px;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(4px);
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem; color: #e57373;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: all 0.2s;
+            z-index: 2;
+        }
+        .plant-card-wish:hover { transform: scale(1.15); }
+        .plant-card-img {
+            width: 100%; height: 180px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem;
+        }
+        .plant-card-img-emoji {
+            width: 100%; height: 180px;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3.5rem;
+        }
+        .plant-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+        .plant-card-name {
+            font-size: 1rem; font-weight: 700; color: var(--text);
+            margin-bottom: 2px;
+        }
+        .plant-card-sci {
+            font-size: 0.78rem; color: var(--text-muted);
+            font-style: italic; margin-bottom: 10px;
+        }
+        .plant-card-tags {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            margin-bottom: 12px;
+        }
+        .plant-tag {
+            font-size: 0.72rem; font-weight: 500;
+            padding: 3px 9px; border-radius: 12px;
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+        .plant-card-rating {
+            display: flex; align-items: center; gap: 4px;
+            font-size: 0.8rem; color: #f59e0b;
+            margin-bottom: 12px;
+        }
+        .plant-card-rating span { color: var(--text-muted); }
+        .plant-card-footer {
+            display: flex; align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+        .plant-price {
+            font-size: 1.25rem; font-weight: 800; color: var(--accent);
+        }
+        .plant-price-original {
+            font-size: 0.8rem; color: var(--text-muted);
+            text-decoration: line-through; margin-left: 4px;
+        }
+        .plant-price-wrap { display: flex; align-items: baseline; gap: 4px; }
+        .plant-add-btn {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: #fff; border: none; border-radius: 10px;
+            padding: 9px 16px; font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 6px;
+            transition: all 0.25s;
+        }
+        .plant-add-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 14px rgba(46,125,50,0.35);
+        }
+        .plant-add-btn.in-cart {
+            background: linear-gradient(135deg, #1a6b1a, #388e3c);
+        }
+
+        /* ── Bihar Info Banner ──────────────────────────────────────── */
+        .bihar-banner {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 32px rgba(46,125,50,0.25);
+        }
+        .bihar-banner-icon { font-size: 3.5rem; flex-shrink: 0; }
+        .bihar-banner-text { flex: 1; min-width: 0; }
+        .bihar-banner-text h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .bihar-banner-text p { font-size: 0.9rem; color: rgba(255,255,255,0.82); max-width: 500px; line-height: 1.6; }
+        .bihar-stats { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; }
+        .bihar-stat-pill {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 0.78rem; font-weight: 600; color: #b9f6ca;
+        }
+
+        /* ── Cart Sidebar ───────────────────────────────────────────── */
+        .cart-toggle-btn {
+            position: fixed;
+            bottom: 90px; right: 24px;
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            border: none; color: #fff;
+            font-size: 1.4rem; cursor: pointer;
+            box-shadow: 0 4px 20px rgba(46,125,50,0.45);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 400;
+            transition: transform 0.2s;
+        }
+        .cart-toggle-btn:hover { transform: scale(1.1); }
+        .cart-badge {
+            position: absolute; top: -4px; right: -4px;
+            width: 20px; height: 20px;
+            background: #ef5350; border-radius: 50%;
+            font-size: 0.7rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid #fff;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -420px;
+            width: 380px; max-width: 95vw;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: -4px 0 40px rgba(0,0,0,0.2);
+            z-index: 600;
+            display: flex; flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border);
+        }
+        .cart-drawer.open { right: 0; }
+        .cart-drawer-header {
+            display: flex; align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, #1b5e20, #2e7d32);
+        }
+        .cart-drawer-header h3 { font-size: 1.05rem; font-weight: 700; color: #fff; }
+        .cart-close-btn {
+            background: rgba(255,255,255,0.15); border: none;
+            width: 32px; height: 32px; border-radius: 50%;
+            color: #fff; font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cart-items-list { flex: 1; overflow-y: auto; padding: 16px; }
+        .cart-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .cart-item-emoji { font-size: 2rem; flex-shrink: 0; }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+        .cart-item-meta { font-size: 0.78rem; color: var(--text-muted); }
+        .cart-item-price { font-size: 0.95rem; font-weight: 700; color: var(--accent); }
+        .cart-item-qty {
+            display: flex; align-items: center; gap: 6px;
+        }
+        .qty-btn {
+            width: 26px; height: 26px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px; background: var(--bg2);
+            color: var(--text); font-size: 0.9rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .qty-val { font-size: 0.85rem; font-weight: 600; min-width: 20px; text-align: center; }
+        .cart-empty {
+            text-align: center; padding: 60px 24px;
+        }
+        .cart-empty-icon { font-size: 4rem; margin-bottom: 16px; opacity: 0.5; }
+        .cart-empty p { color: var(--text-muted); font-size: 0.9rem; }
+        .cart-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            background: var(--bg2);
+        }
+        .cart-total-row {
+            display: flex; justify-content: space-between;
+            font-size: 1rem; font-weight: 700;
+            color: var(--text); margin-bottom: 16px;
+        }
+        .cart-checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: #fff; border: none; border-radius: 12px;
+            padding: 14px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center;
+            justify-content: center; gap: 8px;
+            transition: all 0.25s;
+        }
+        .cart-checkout-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* ── Payment QR Modal ───────────────────────────────────────── */
+        .shop-modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 800;
+            align-items: center; justify-content: center;
+        }
+        .shop-modal-overlay.open { display: flex; }
+        .shop-modal {
+            background: var(--card-bg);
+            border-radius: 20px;
+            width: 90%; max-width: 460px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+            overflow: hidden;
+            animation: modalIn 0.35s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .shop-modal-header {
+            background: linear-gradient(135deg, #1b5e20, #2e7d32);
+            padding: 22px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .shop-modal-header h3 { color: #fff; font-size: 1.05rem; font-weight: 700; }
+        .shop-modal-close {
+            background: rgba(255,255,255,0.15);
+            border: none; width: 32px; height: 32px;
+            border-radius: 50%; color: #fff;
+            font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .shop-modal-body { padding: 28px 24px; }
+        .qr-wrap {
+            text-align: center; margin-bottom: 24px;
+        }
+        .qr-wrap img {
+            width: 200px; height: 200px;
+            border: 4px solid var(--border);
+            border-radius: 16px;
+            display: block; margin: 0 auto 12px;
+        }
+        .qr-upi-label {
+            font-size: 0.78rem; color: var(--text-muted);
+        }
+        .qr-amount-display {
+            background: var(--accent-glow);
+            border: 1.5px solid var(--accent);
+            border-radius: 12px; padding: 14px 20px;
+            text-align: center; margin-bottom: 20px;
+        }
+        .qr-amount-display span { font-size: 0.85rem; color: var(--text-muted); }
+        .qr-amount-display strong { font-size: 1.8rem; font-weight: 800; color: var(--accent); display: block; }
+        .utr-input-wrap label { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 8px; display: block; }
+        .utr-input-wrap input {
+            width: 100%; padding: 12px 16px;
+            border: 1.5px solid var(--border); border-radius: 10px;
+            background: var(--bg); color: var(--text);
+            font-family: inherit; font-size: 0.95rem; outline: none;
+            transition: border-color 0.2s;
+        }
+        .utr-input-wrap input:focus { border-color: var(--accent); }
+        .utr-submit-btn {
+            width: 100%; margin-top: 16px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: #fff; border: none; border-radius: 12px;
+            padding: 14px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center;
+            justify-content: center; gap: 8px;
+            transition: all 0.25s;
+        }
+        .utr-submit-btn:hover { opacity: 0.9; }
+
+        /* ── Product Detail Modal ───────────────────────────────────── */
+        .product-modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            z-index: 700; align-items: center; justify-content: center;
+        }
+        .product-modal-overlay.open { display: flex; }
+        .product-modal {
+            background: var(--card-bg); border-radius: 20px;
+            width: 90%; max-width: 640px;
+            max-height: 90vh; overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+            animation: modalIn 0.35s ease;
+        }
+        .product-modal-emoji {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            height: 200px; display: flex; align-items: center;
+            justify-content: center; font-size: 6rem;
+        }
+        .product-modal-body { padding: 28px; }
+        .product-modal-name { font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+        .product-modal-sci { font-size: 0.9rem; font-style: italic; color: var(--text-muted); margin-bottom: 16px; }
+        .product-modal-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+        .product-detail-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 12px; margin-bottom: 24px;
+        }
+        .product-detail-item {
+            background: var(--bg); border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .product-detail-item label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .product-detail-item span { font-size: 0.95rem; font-weight: 600; color: var(--text); display: block; margin-top: 2px; }
+        .product-modal-footer {
+            display: flex; align-items: center;
+            gap: 16px; padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .pm-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+        .pm-add-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: #fff; border: none; border-radius: 12px;
+            padding: 14px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center;
+            justify-content: center; gap: 8px;
+            transition: all 0.25s;
+        }
+        .pm-add-btn:hover { opacity: 0.9; }
+        .pm-close-btn {
+            background: transparent; border: 1.5px solid var(--border);
+            border-radius: 12px; padding: 14px 18px;
+            color: var(--text); font-size: 0.9rem;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .pm-close-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── No Results ─────────────────────────────────────────────── */
+        .no-results {
+            text-align: center; padding: 60px 20px;
+            grid-column: 1/-1;
+        }
+        .no-results-icon { font-size: 4rem; margin-bottom: 16px; }
+        .no-results h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 8px; }
+        .no-results p { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* ── Responsive ─────────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .shop-layout { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px; }
+            .shop-content { padding-left: 0; }
+            .shop-filters {
+                position: fixed;
+                top: 0;
+                left: -320px;
+                width: 300px;
+                height: 100vh;
+                background: var(--card-bg);
+                border: none;
+                border-right: 1px solid var(--border);
+                box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+                z-index: 500;
+                overflow-y: auto;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border-radius: 0;
+                padding: 24px;
+                box-sizing: border-box;
+            }
+            .shop-filters.mobile-open {
+                left: 0;
+            }
+            .mobile-filter-header {
+                display: flex !important;
+            }
+            .shop-filters .filter-title {
+                display: none;
+            }
+            .shop-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .shop-stat {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .shop-stat:nth-child(odd) {
+                border-right: 1px solid var(--border);
+            }
+            .shop-stat:nth-child(3), .shop-stat:nth-child(4) {
+                border-bottom: none;
+            }
+            .bihar-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 24px;
+            }
+        }
+        @media (max-width: 600px) {
+            .shop-hero { padding: 60px 20px 48px; }
+            .plant-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+            .plant-card-img, .plant-card-img-emoji { height: 120px; font-size: 2.8rem; }
+            .plant-card-body { padding: 10px; }
+            .plant-card-name { font-size: 0.88rem; }
+            .plant-card-sci { font-size: 0.72rem; margin-bottom: 6px; }
+            .plant-card-rating { font-size: 0.72rem; margin-bottom: 6px; }
+            .plant-price { font-size: 1rem; }
+            .plant-price-original { font-size: 0.72rem; }
+            .plant-add-btn { padding: 6px 10px; font-size: 0.78rem; border-radius: 8px; gap: 4px; }
+            .shop-stat { min-width: 120px; padding: 12px 14px; }
+            .bihar-banner { padding: 20px; }
+            .bihar-stats { gap: 8px; }
+            .product-detail-grid { grid-template-columns: 1fr; }
+            .product-modal-footer { flex-direction: column; align-items: stretch; gap: 12px; }
+            .pm-price { text-align: center; font-size: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .shop-stats {
+                grid-template-columns: 1fr;
+            }
+            .shop-stat {
+                border-right: none !important;
+                border-bottom: 1px solid var(--border);
+            }
+            .shop-stat:last-child {
+                border-bottom: none;
+            }
+            .shop-search-bar input {
+                padding: 12px 16px;
+                font-size: 0.88rem;
+            }
+            .shop-search-bar button {
+                padding: 12px 18px;
+            }
+            .cat-pill {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+        }
+        .mobile-filter-btn {
+            display: none;
+            align-items: center; gap: 8px;
+            background: var(--card-bg);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 0.9rem; font-weight: 600;
+            color: var(--text); cursor: pointer;
+        }
+        @media (max-width: 900px) {
+            .mobile-filter-btn { display: flex; }
+        }
+
+        /* ── Category Section ──────────────────────────────────────── */
+        .category-scroll {
+            display: flex; gap: 10px; overflow-x: auto;
+            padding-bottom: 4px; margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+        .category-scroll::-webkit-scrollbar { display: none; }
+        .cat-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            flex-shrink: 0;
+            padding: 8px 18px;
+            border: 1.5px solid var(--border);
+            border-radius: 24px;
+            background: var(--card-bg);
+            font-size: 0.85rem; font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer; transition: all 0.2s;
+        }
+        .cat-pill:hover, .cat-pill.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+        .cat-pill.active { box-shadow: 0 0 0 2px var(--accent-glow); }
+
+        /* ── Order Success Anim ─────────────────────────────────────── */
+        .order-success-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.65); backdrop-filter: blur(6px);
+            z-index: 900; align-items: center; justify-content: center;
+        }
+        .order-success-overlay.open { display: flex; }
+        .order-success-card {
+            background: var(--card-bg);
+            border-radius: 24px; padding: 48px 40px;
+            text-align: center; max-width: 380px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+            animation: modalIn 0.35s ease;
+        }
+        .order-success-icon { font-size: 4rem; margin-bottom: 16px; }
+        .order-success-card h2 { font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+        .order-success-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+        .order-success-btn {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: #fff; border: none; border-radius: 12px;
+            padding: 12px 28px; font-size: 0.95rem; font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='/'">🌿 ZENGardening</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/shop" class="active">Shop</a></li>
+            <li><a href="/blog">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login" class="login-btn">Login</a></li>
+            <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+            <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
+        </ul>
+    </nav>
+
+    <!-- COLLAPSIBLE SIDEBAR -->
+    <div class="sidebar" id="sidebar"></div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+    <!-- SHOP HERO -->
+    <header class="shop-hero">
+        <div class="shop-hero-badge">
+            <i class="fas fa-map-marker-alt"></i>
+            Bihar's Fertile Gangetic Plains
+        </div>
+        <h1>Shop <span>Fresh Plants</span> From Bihar</h1>
+        <p>Buy premium plants directly from Bihar's farming heartland — home to India's finest litchi, makhana, mango, and more.</p>
+        <div class="shop-search-bar">
+            <input type="text" id="shopSearchInput" placeholder="Search plants, fruits, vegetables…" autocomplete="off">
+            <button onclick="filterShop()"><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <!-- STATS STRIP -->
+    <div class="shop-stats" id="shopStats">
+        <div class="shop-stat">
+            <div class="shop-stat-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="shop-stat-val" id="statTotal">24</div>
+                <div class="shop-stat-label">Plant Varieties</div>
+            </div>
+        </div>
+        <div class="shop-stat">
+            <div class="shop-stat-icon"><i class="fas fa-truck"></i></div>
+            <div>
+                <div class="shop-stat-val">Free</div>
+                <div class="shop-stat-label">Delivery on ₹500+</div>
+            </div>
+        </div>
+        <div class="shop-stat">
+            <div class="shop-stat-icon"><i class="fas fa-leaf"></i></div>
+            <div>
+                <div class="shop-stat-val">100%</div>
+                <div class="shop-stat-label">Organic Grown</div>
+            </div>
+        </div>
+        <div class="shop-stat">
+            <div class="shop-stat-icon"><i class="fas fa-shield-alt"></i></div>
+            <div>
+                <div class="shop-stat-val">7-Day</div>
+                <div class="shop-stat-label">Replacement Guarantee</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN SHOP LAYOUT -->
+    <div class="shop-layout">
+
+        <!-- LEFT FILTERS SIDEBAR -->
+        <aside class="shop-filters" id="shopFiltersSidebar">
+            <div class="mobile-filter-header" style="display:none; align-items:center; justify-content:space-between; margin-bottom:20px;">
+                <h3 style="margin:0; font-size:1.1rem; color:var(--text)">Filters</h3>
+                <button onclick="toggleMobileFilters()" style="background:none; border:none; font-size:1.4rem; color:var(--text-muted); cursor:pointer;">&times;</button>
+            </div>
+            <div class="filter-title"><i class="fas fa-sliders-h" style="margin-right:6px"></i>Filters</div>
+
+            <div class="filter-group">
+                <div class="filter-label">Category</div>
+                <div class="filter-chip-group" id="filterCategoryChips">
+                    <button class="filter-chip active" data-cat="All" onclick="selectCategoryChip(this)">All</button>
+                    <button class="filter-chip" data-cat="Fruit" onclick="selectCategoryChip(this)">🍋 Fruits</button>
+                    <button class="filter-chip" data-cat="Vegetable" onclick="selectCategoryChip(this)">🥦 Vegetables</button>
+                    <button class="filter-chip" data-cat="Grain" onclick="selectCategoryChip(this)">🌾 Grains</button>
+                    <button class="filter-chip" data-cat="Herb" onclick="selectCategoryChip(this)">🌿 Herbs</button>
+                    <button class="filter-chip" data-cat="Pulse" onclick="selectCategoryChip(this)">🫘 Pulses</button>
+                    <button class="filter-chip" data-cat="Flower" onclick="selectCategoryChip(this)">🌸 Flowers</button>
+                </div>
+            </div>
+
+            <div class="filter-sep"></div>
+
+            <div class="filter-group">
+                <div class="filter-label">Difficulty</div>
+                <div class="filter-chip-group" id="filterDiffChips">
+                    <button class="filter-chip active" data-diff="All" onclick="selectDiffChip(this)">All</button>
+                    <button class="filter-chip" data-diff="Easy" onclick="selectDiffChip(this)">Easy</button>
+                    <button class="filter-chip" data-diff="Medium" onclick="selectDiffChip(this)">Medium</button>
+                    <button class="filter-chip" data-diff="Advanced" onclick="selectDiffChip(this)">Advanced</button>
+                </div>
+            </div>
+
+            <div class="filter-sep"></div>
+
+            <div class="filter-group">
+                <div class="filter-label">Season</div>
+                <div class="filter-chip-group" id="filterSeasonChips">
+                    <button class="filter-chip active" data-season="All" onclick="selectSeasonChip(this)">All</button>
+                    <button class="filter-chip" data-season="Summer" onclick="selectSeasonChip(this)">☀️ Summer</button>
+                    <button class="filter-chip" data-season="Winter" onclick="selectSeasonChip(this)">❄️ Winter</button>
+                    <button class="filter-chip" data-season="Spring" onclick="selectSeasonChip(this)">🌸 Spring</button>
+                    <button class="filter-chip" data-season="All Year" onclick="selectSeasonChip(this)">🌍 All Year</button>
+                </div>
+            </div>
+
+            <div class="filter-sep"></div>
+
+            <div class="filter-group">
+                <div class="filter-label">Max Price: ₹<span id="priceLabel">1000</span></div>
+                <div class="price-range-wrap">
+                    <input type="range" id="priceRange" min="49" max="1000" value="1000" step="50" oninput="updatePriceLabel(this.value)">
+                    <div class="price-range-labels"><span>₹49</span><span>₹1000</span></div>
+                </div>
+            </div>
+
+            <div class="filter-sep"></div>
+
+            <button onclick="clearAllFilters()" style="width:100%;background:transparent;border:1.5px solid var(--border);border-radius:10px;padding:10px;font-size:0.85rem;font-weight:600;color:var(--text-muted);cursor:pointer;">
+                <i class="fas fa-times" style="margin-right:6px"></i>Clear All Filters
+            </button>
+        </aside>
+
+        <!-- RIGHT SHOP CONTENT -->
+        <div class="shop-content">
+
+            <!-- Bihar Banner -->
+            <div class="bihar-banner">
+                <div class="bihar-banner-icon">🌾</div>
+                <div class="bihar-banner-text">
+                    <h3>Proudly Sourced from Bihar's Agricultural Heritage</h3>
+                    <p>Bihar lies in the fertile basin of the Ganga river, producing 71% of India's litchi, 90% of world's Makhana (fox nuts), and leading in mango, guava, and vegetables.</p>
+                    <div class="bihar-stats">
+                        <span class="bihar-stat-pill">🥭 #1 Litchi Producer</span>
+                        <span class="bihar-stat-pill">🌱 90% Makhana Worldwide</span>
+                        <span class="bihar-stat-pill">🍋 Top 3 Guava Producer</span>
+                        <span class="bihar-stat-pill">🏆 4th Largest Vegetable State</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile filter toggle -->
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+                <button class="mobile-filter-btn" onclick="toggleMobileFilters()">
+                    <i class="fas fa-sliders-h"></i> Filters
+                </button>
+                <!-- Category quick scroll -->
+                <div class="category-scroll" id="catPillRow">
+                    <button class="cat-pill active" data-cat="All" onclick="catPillSelect(this)">🌿 All</button>
+                    <button class="cat-pill" data-cat="Fruit" onclick="catPillSelect(this)">🍋 Fruits</button>
+                    <button class="cat-pill" data-cat="Vegetable" onclick="catPillSelect(this)">🥦 Vegetables</button>
+                    <button class="cat-pill" data-cat="Grain" onclick="catPillSelect(this)">🌾 Grains</button>
+                    <button class="cat-pill" data-cat="Herb" onclick="catPillSelect(this)">🌿 Herbs</button>
+                    <button class="cat-pill" data-cat="Pulse" onclick="catPillSelect(this)">🫘 Pulses</button>
+                    <button class="cat-pill" data-cat="Flower" onclick="catPillSelect(this)">🌸 Flowers</button>
+                </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="shop-toolbar">
+                <div class="shop-result-count" id="resultCount">Showing <strong>0</strong> plants</div>
+                <div class="shop-sort">
+                    <label for="shopSort">Sort:</label>
+                    <select id="shopSort" onchange="filterShop()">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="name">Name A–Z</option>
+                        <option value="rating">Best Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Plant Grid -->
+            <div class="plant-grid" id="plantGrid">
+                <!-- Rendered by JS -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CART TOGGLE BUTTON -->
+    <button class="cart-toggle-btn" onclick="toggleCart()" id="cartToggleBtn" title="View Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+    </button>
+
+    <!-- SCROLL TO TOP -->
+    <button id="goTopBtn" onclick="scrollToTop()" style="display:none;position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--btn-primary);border:none;color:#fff;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 16px rgba(46,125,50,0.35);z-index:300;align-items:center;justify-content:center;">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- CART DRAWER -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <h3><i class="fas fa-shopping-cart" style="margin-right:8px"></i>Your Cart</h3>
+            <button class="cart-close-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <p>Your cart is empty.<br>Add some plants to get started!</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="cart-checkout-btn" onclick="openPaymentModal()">
+                <i class="fas fa-qrcode"></i> Pay via QR Code
+            </button>
+        </div>
+    </div>
+    <div class="overlay" id="cartOverlay" onclick="toggleCart()" style="z-index:599;display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35)"></div>
+
+    <!-- PAYMENT QR MODAL -->
+    <div class="shop-modal-overlay" id="paymentModal">
+        <div class="shop-modal">
+            <div class="shop-modal-header">
+                <h3><i class="fas fa-qrcode" style="margin-right:8px"></i>Pay via UPI QR Code</h3>
+                <button class="shop-modal-close" onclick="closePaymentModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="shop-modal-body">
+                <div class="qr-wrap">
+                    <img id="payQrImg" src="" alt="UPI QR Code">
+                    <div class="qr-upi-label">Scan with PhonePe, GPay, Paytm or any UPI app</div>
+                </div>
+                <div class="qr-amount-display">
+                    <span>Total Amount to Pay</span>
+                    <strong id="payAmountDisplay">₹0</strong>
+                </div>
+                <div class="utr-input-wrap">
+                    <label for="utrInput">Enter UTR / Transaction ID after payment</label>
+                    <input type="text" id="utrInput" placeholder="e.g. T2506261234567890" maxlength="30">
+                </div>
+                <button class="utr-submit-btn" onclick="submitShopOrder()">
+                    <i class="fas fa-check-circle"></i> Confirm Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div class="product-modal-overlay" id="productModal">
+        <div class="product-modal" id="productModalCard">
+            <div class="product-modal-emoji" id="pmEmoji">🌱</div>
+            <div class="product-modal-body">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                    <span id="pmBadge" class="plant-card-badge">Vegetable</span>
+                </div>
+                <div class="product-modal-name" id="pmName">Plant Name</div>
+                <div class="product-modal-sci" id="pmSci">Scientific Name</div>
+                <div class="product-modal-desc" id="pmDesc">Description</div>
+                <div class="product-detail-grid">
+                    <div class="product-detail-item">
+                        <label>Season</label>
+                        <span id="pmSeason">—</span>
+                    </div>
+                    <div class="product-detail-item">
+                        <label>Difficulty</label>
+                        <span id="pmDiff">—</span>
+                    </div>
+                    <div class="product-detail-item">
+                        <label>Category</label>
+                        <span id="pmCat">—</span>
+                    </div>
+                    <div class="product-detail-item">
+                        <label>Origin</label>
+                        <span id="pmOrigin">Bihar, India</span>
+                    </div>
+                </div>
+                <div class="product-modal-footer">
+                    <div class="pm-price" id="pmPrice">₹0</div>
+                    <button class="pm-close-btn" onclick="closeProductModal()"><i class="fas fa-times"></i> Close</button>
+                    <button class="pm-add-btn" id="pmAddBtn" onclick="addToCartFromModal()">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER SUCCESS MODAL -->
+    <div class="order-success-overlay" id="orderSuccessOverlay">
+        <div class="order-success-card">
+            <div class="order-success-icon">✅</div>
+            <h2>Order Confirmed!</h2>
+            <p>Your order has been placed successfully. We'll contact you shortly for delivery details. Your plants will be dispatched within 2-3 business days.</p>
+            <button class="order-success-btn" onclick="closeOrderSuccess()">Continue Shopping 🌿</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="background:var(--bg2);border-top:1px solid var(--border);padding:48px 28px 28px;margin-top:60px;">
+        <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-bottom:40px;">
+            <div>
+                <div style="font-size:1.2rem;font-weight:700;color:var(--accent);margin-bottom:12px;">🌿 ZENGardening</div>
+                <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;">Bringing Bihar's finest plants and agricultural produce to your doorstep. Grow with nature.</p>
+            </div>
+            <div>
+                <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:12px;">Quick Links</div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <a href="/" style="font-size:0.85rem;color:var(--text-muted);">Home</a>
+                    <a href="/shop" style="font-size:0.85rem;color:var(--accent);">Plant Shop</a>
+                    <a href="/blog" style="font-size:0.85rem;color:var(--text-muted);">Blogs</a>
+                    <a href="/contact" style="font-size:0.85rem;color:var(--text-muted);">Contact</a>
+                </div>
+            </div>
+            <div>
+                <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:12px;">Customer Support</div>
+                <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;">7-day replacement guarantee on all plants.<br>Free delivery on orders above ₹500.</p>
+            </div>
+        </div>
+        <div style="text-align:center;font-size:0.8rem;color:var(--text-muted);border-top:1px solid var(--border);padding-top:20px;">
+            © 2025 ZENGardening. Proudly sourced from Bihar's Gangetic Plains 🌾
+        </div>
+    </footer>
+
+    <script>
+    /* ─────────────────────────────────────────────
+       ZENGardening Shop — Bihar Plant Data & Logic
+    ───────────────────────────────────────────── */
+
+    const BIHAR_SHOP_PLANTS = [
+        // FRUITS (Fruticulture)
+        { id:101, name:'Shahi Litchi', sci:'Litchi chinensis', cat:'Fruit', season:'Summer', diff:'Advanced', emoji:'🍒', price:399, originalPrice:499, rating:4.9, reviews:284, desc:'Bihar accounts for 71% of India\'s annual litchi production. The Shahi Litchi from Muzaffarpur is world-famous for its juicy, sweet flavour. Grow your own litchi tree and enjoy fresh fruits each season.', origin:'Muzaffarpur, Bihar', badge:'fruit', tags:['#1 in India','Juicy','Sweet'] },
+        { id:102, name:'Makhana (Fox Nut)', sci:'Euryale ferox', cat:'Herb', season:'Summer', diff:'Advanced', emoji:'🌰', price:299, originalPrice:399, rating:4.8, reviews:156, desc:'Bihar produces 90% of the world\'s Makhana. This aquatic plant is cultivated in ponds of North Bihar. Superfood rich in protein, calcium and antioxidants.', origin:'Darbhanga, Bihar', badge:'herb', tags:['Superfood','90% World Share','Aquatic'] },
+        { id:103, name:'Malda Mango Sapling', sci:'Mangifera indica', cat:'Fruit', season:'Summer', diff:'Medium', emoji:'🥭', price:249, originalPrice:349, rating:4.8, reviews:198, desc:'Bihar is the third-largest mango producer in India, producing 1.4 million MT annually (13% of national production). The Malda variety is prized for its rich flavour and golden colour.', origin:'Bhagalpur, Bihar', badge:'fruit', tags:['Top 3 India','Malda Variety','Annual Fruiting'] },
+        { id:104, name:'Guava Sapling', sci:'Psidium guajava', cat:'Fruit', season:'All Year', diff:'Easy', emoji:'🍈', price:149, originalPrice:199, rating:4.7, reviews:142, desc:'Bihar is the third-largest guava producer (10.2% of national production). Guava thrives in Bihar\'s alluvial soil and produces fruit multiple times a year. Perfect for terrace garden containers.', origin:'Patna, Bihar', badge:'fruit', tags:['All Season','Container Friendly','High Yield'] },
+        { id:105, name:'Banana Plant', sci:'Musa acuminata', cat:'Fruit', season:'All Year', diff:'Easy', emoji:'🍌', price:129, originalPrice:179, rating:4.6, reviews:118, desc:'Bihar is the seventh-largest banana producer in India (6.7% of national production). Dwarf varieties are perfect for container growing on balconies and terraces.', origin:'Vaishali, Bihar', badge:'fruit', tags:['Dwarf Variety','Container OK','Fast Growing'] },
+        { id:106, name:'Pineapple Sapling', sci:'Ananas comosus', cat:'Fruit', season:'Summer', diff:'Medium', emoji:'🍍', price:199, originalPrice:269, rating:4.5, reviews:89, desc:'Bihar is the fourth-largest pineapple producer in India (2.6% of national production). Grows well in sandy loam soil with good drainage.', origin:'Champaran, Bihar', badge:'fruit', tags:['4th Largest Producer','Tropical','Sweet'] },
+        { id:107, name:'Strawberry Plant', sci:'Fragaria × ananassa', cat:'Fruit', season:'Winter', diff:'Medium', emoji:'🍓', price:179, originalPrice:229, rating:4.7, reviews:134, desc:'Bihari farmers are turning to strawberry cultivation for better economic returns. Grows excellently in Bihar\'s winter months. Perfect for containers and hanging baskets.', origin:'Patna, Bihar', badge:'fruit', tags:['Winter Crop','Container Friendly','High Value'] },
+        { id:108, name:'Dragon Fruit (Kamalam)', sci:'Pitaya hylocereus', cat:'Fruit', season:'Summer', diff:'Medium', emoji:'🐉', price:349, originalPrice:449, rating:4.6, reviews:76, desc:'Kamalam (Dragon Fruit) is the new wonder crop of Bihar. Farmers are achieving excellent returns from this exotic cactus fruit. Very drought resistant once established.', origin:'Gaya, Bihar', badge:'fruit', tags:['Exotic','High Value','Drought Resistant'] },
+
+        // VEGETABLES (Vegaculture)
+        { id:201, name:'Hajipur Cauliflower', sci:'Brassica oleracea', cat:'Vegetable', season:'Winter', diff:'Easy', emoji:'🥦', price:79, originalPrice:99, rating:4.6, reviews:112, desc:'Hajipur in Vaishali district is famous for an early variety of cauliflower that reaches market in the last week of September — weeks before anywhere else. A premium, fast-maturing variety.', origin:'Hajipur, Vaishali', badge:'vegetable', tags:['Early Season','Fast Growing','Premium Quality'] },
+        { id:202, name:'Bihar Brinjal (Baingan)', sci:'Solanum melongena', cat:'Vegetable', season:'Summer', diff:'Easy', emoji:'🍆', price:69, originalPrice:89, rating:4.5, reviews:98, desc:'Bihar brinjal is known for its heavy yield and glossy skin. Begusarai district is a major producer. Grows well in containers with regular watering.', origin:'Begusarai, Bihar', badge:'vegetable', tags:['Heavy Yield','Container OK','Warm Season'] },
+        { id:203, name:'Potato (Aloo) Seed', sci:'Solanum tuberosum', cat:'Vegetable', season:'Winter', diff:'Easy', emoji:'🥔', price:59, originalPrice:79, rating:4.4, reviews:167, desc:'Bihar is one of India\'s top potato-producing states. The Kufri variety is perfect for container growing. One seed bag yields multiple tubers per pot.', origin:'Nalanda, Bihar', badge:'vegetable', tags:['Container Friendly','High Yield','Winter Crop'] },
+        { id:204, name:'Onion Bulb Sets', sci:'Allium cepa', cat:'Vegetable', season:'Winter', diff:'Easy', emoji:'🧅', price:49, originalPrice:69, rating:4.3, reviews:205, desc:'Onions are one of Bihar\'s dominant vegetable crops. These premium onion sets (small bulbs) produce large, pungent onions in 3-4 months. Ideal for grow bags.', origin:'Muzaffarpur, Bihar', badge:'vegetable', tags:['Grow Bags','3-4 Month Harvest','Storage Friendly'] },
+        { id:205, name:'Tomato Plant', sci:'Solanum lycopersicum', cat:'Vegetable', season:'All Year', diff:'Easy', emoji:'🍅', price:59, originalPrice:79, rating:4.7, reviews:233, desc:'Tomatoes are extensively grown across Bihar, especially in Patna and Vaishali districts. The hybrid variety produces clusters of juicy red tomatoes. Great for balconies.', origin:'Patna, Bihar', badge:'vegetable', tags:['Prolific Bearer','Balcony Perfect','Rich Vitamins'] },
+        { id:206, name:'Bitter Gourd (Karela)', sci:'Momordica charantia', cat:'Vegetable', season:'Summer', diff:'Easy', emoji:'🌿', price:49, originalPrice:69, rating:4.2, reviews:87, desc:'Karela is a beloved vegetable across Bihar, known for its medicinal properties. The climbing vine grows easily on balcony railings and trellises.', origin:'Purnia, Bihar', badge:'vegetable', tags:['Medicinal','Climbing Vine','Trellis Grower'] },
+        { id:207, name:'Bottle Gourd (Lauki)', sci:'Lagenaria siceraria', cat:'Vegetable', season:'Summer', diff:'Easy', emoji:'🥒', price:49, originalPrice:69, rating:4.3, reviews:94, desc:'Lauki (bottle gourd) is a staple of Bihar\'s diet and kitchen gardens. A fast-growing climber that produces large, nutritious fruits. Excellent for pergola growing.', origin:'Champaran, Bihar', badge:'vegetable', tags:['Fast Growing','Climber','Nutritious'] },
+        { id:208, name:'Okra (Bhindi) Seeds', sci:'Abelmoschus esculentus', cat:'Vegetable', season:'Summer', diff:'Easy', emoji:'🌱', price:39, originalPrice:59, rating:4.5, reviews:178, desc:'Bhindi is the most commonly grown vegetable in Bihar\'s kitchen gardens. Heat-loving, drought-tolerant, and extremely productive in containers and ground. Ready to harvest in 60 days.', origin:'Bihar (all districts)', badge:'vegetable', tags:['Drought Tolerant','60-Day Harvest','High Yield'] },
+
+        // GRAINS & CEREALS
+        { id:301, name:'Aromatic Rice Seedlings', sci:'Oryza sativa', cat:'Grain', season:'Summer', diff:'Medium', emoji:'🌾', price:99, originalPrice:139, rating:4.6, reviews:67, desc:'Bihar produces 7.5-8 million MT of rice annually (6.5% of national production). This aromatic variety (0.015 million MT per year) from Bihar\'s wetlands is known for its fragrance and taste.', origin:'Katihar, Bihar', badge:'grain', tags:['Aromatic Variety','Heritage Grain','Grow in Pots'] },
+        { id:302, name:'Maize (Makka) Seeds', sci:'Zea mays', cat:'Grain', season:'Summer', diff:'Easy', emoji:'🌽', price:79, originalPrice:99, rating:4.4, reviews:89, desc:'Bihar produces 4-4.5 million MT of maize annually (7% of national production). Khagaria and Saharsa lead production. Grow in large containers for a stunning terrace feature plant.', origin:'Khagaria, Bihar', badge:'grain', tags:['7% National Share','Container Ornamental','Productive'] },
+        { id:303, name:'Sugarcane Setts', sci:'Saccharum officinarum', cat:'Grain', season:'All Year', diff:'Medium', emoji:'🎋', price:119, originalPrice:159, rating:4.3, reviews:52, desc:'Bihar produces 13 million MT of sugarcane annually. A major cash crop. Grows into a tall, impressive plant. Harvest your own natural sweetener at home.', origin:'Champaran, Bihar', badge:'grain', tags:['Cash Crop','Natural Sweetener','Impressive Height'] },
+
+        // PULSES
+        { id:401, name:'Arhar (Pigeon Pea) Seeds', sci:'Cajanus cajan', cat:'Pulse', season:'Summer', diff:'Easy', emoji:'🫘', price:49, originalPrice:69, rating:4.5, reviews:134, desc:'Arhar dal is the most popular pulse in Bihar. An easy-growing legume that fixes nitrogen in the soil, improving fertility. Grows as a small bush perfect for containers.', origin:'Patna/Bhojpur, Bihar', badge:'pulse', tags:['Nitrogen Fixer','Soil Improver','Drought Hardy'] },
+        { id:402, name:'Moong (Green Gram) Seeds', sci:'Vigna radiata', cat:'Pulse', season:'Summer', diff:'Easy', emoji:'🟢', price:39, originalPrice:59, rating:4.4, reviews:156, desc:'Moong is widely grown across Bihar and among the fastest growing pulses. Ready in just 60-70 days. Can be sprouted for salads or grown for fresh green pods.', origin:'Nalanda, Bihar', badge:'pulse', tags:['60-Day Harvest','Sproutable','High Protein'] },
+        { id:403, name:'Masoor (Red Lentil) Seeds', sci:'Lens culinaris', cat:'Pulse', season:'Winter', diff:'Easy', emoji:'🫘', price:45, originalPrice:65, rating:4.3, reviews:98, desc:'Masoor dal is a winter staple of Bihar. Grows in well-drained soil in cool weather. The plants are compact and ideal for container growing on balconies.', origin:'Aurangabad, Bihar', badge:'pulse', tags:['Winter Crop','Low Water','Rich in Iron'] },
+
+        // HERBS
+        { id:501, name:'Jute Sapling', sci:'Corchorus olitorius', cat:'Herb', season:'Summer', diff:'Easy', emoji:'🌿', price:79, originalPrice:99, rating:4.2, reviews:45, desc:'Jute is one of Bihar\'s major cash crops. Often called "golden fibre", young jute leaves (paat shaag) are eaten as nutritious greens. A fast-growing, beautiful plant.', origin:'Katihar/Purnia, Bihar', badge:'herb', tags:['Golden Fibre','Edible Leaves','Fast Growing'] },
+        { id:502, name:'Basil (Tulsi) Plant', sci:'Ocimum tenuiflorum', cat:'Herb', season:'All Year', diff:'Easy', emoji:'🌱', price:49, originalPrice:69, rating:4.8, reviews:312, desc:'Holy Basil (Tulsi) is deeply revered across Bihar. Known for its medicinal, spiritual and culinary uses. One of the easiest plants to grow in any container.', origin:'Bihar (Widely Grown)', badge:'herb', tags:['Medicinal','Sacred Plant','Easy Care'] },
+        { id:503, name:'Honey Bee Lavender', sci:'Lavandula angustifolia', cat:'Flower', season:'All Year', diff:'Easy', emoji:'💜', price:99, originalPrice:149, rating:4.7, reviews:134, desc:'Fragrant lavender attracts pollinators essential for Bihar\'s fruit crops. Bihar produces 1300 MT of honey annually (14% of national production). Grow lavender to support local bee populations.', origin:'Adapted for Bihar', badge:'flower', tags:['Attracts Pollinators','Fragrant','Bee Friendly'] },
+    ];
+
+    // ── Save shop plants to localStorage for admin ─────────────────────────
+    (function seedShopPlants() {
+        if (!localStorage.getItem('zen-shop-plants')) {
+            localStorage.setItem('zen-shop-plants', JSON.stringify(BIHAR_SHOP_PLANTS));
+        }
+    })();
+
+    let shopPlants = JSON.parse(localStorage.getItem('zen-shop-plants')) || BIHAR_SHOP_PLANTS;
+
+    // ── State ──────────────────────────────────────────────────────────────
+    let shopCart = JSON.parse(localStorage.getItem('zen-shop-cart') || '[]');
+    let activeFilters = { cat: 'All', diff: 'All', season: 'All', maxPrice: 1000, search: '' };
+    let currentProductModal = null;
+
+    // ── Render Plant Grid ──────────────────────────────────────────────────
+    function renderPlantGrid() {
+        const grid = document.getElementById('plantGrid');
+        let plants = getFilteredPlants();
+        const sort = document.getElementById('shopSort').value;
+
+        if (sort === 'price-asc') plants.sort((a,b) => a.price - b.price);
+        else if (sort === 'price-desc') plants.sort((a,b) => b.price - a.price);
+        else if (sort === 'name') plants.sort((a,b) => a.name.localeCompare(b.name));
+        else if (sort === 'rating') plants.sort((a,b) => b.rating - a.rating);
+
+        document.getElementById('resultCount').innerHTML = `Showing <strong>${plants.length}</strong> plants`;
+        document.getElementById('statTotal').textContent = shopPlants.length;
+
+        if (plants.length === 0) {
+            grid.innerHTML = `<div class="no-results"><div class="no-results-icon">🔍</div><h3>No plants found</h3><p>Try adjusting your filters or search term.</p></div>`;
+            return;
+        }
+
+        grid.innerHTML = plants.map(p => {
+            const inCart = shopCart.some(c => c.id === p.id);
+            const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
+            return `
+            <div class="plant-card" id="pcard-${p.id}">
+                <span class="plant-card-badge ${p.badge}">${p.cat}</span>
+                <button class="plant-card-wish" onclick="wishlistToggle(${p.id}, this)" title="Wishlist"><i class="fas fa-heart"></i></button>
+                <div class="plant-card-img-emoji" onclick="openProductModal(${p.id})" style="cursor:pointer">${p.emoji}</div>
+                <div class="plant-card-body">
+                    <div class="plant-card-name" onclick="openProductModal(${p.id})" style="cursor:pointer">${p.name}</div>
+                    <div class="plant-card-sci">${p.sci}</div>
+                    <div class="plant-card-tags">
+                        ${p.tags.map(t => `<span class="plant-tag">${t}</span>`).join('')}
+                    </div>
+                    <div class="plant-card-rating">
+                        ${stars} <span>(${p.reviews} reviews)</span>
+                    </div>
+                    <div class="plant-card-footer">
+                        <div class="plant-price-wrap">
+                            <span class="plant-price">₹${p.price}</span>
+                            ${p.originalPrice > p.price ? `<span class="plant-price-original">₹${p.originalPrice}</span>` : ''}
+                        </div>
+                        <button class="plant-add-btn ${inCart ? 'in-cart' : ''}" id="atc-${p.id}" onclick="addToCart(${p.id})">
+                            <i class="fas fa-${inCart ? 'check' : 'cart-plus'}"></i>
+                            ${inCart ? 'Added' : 'Add'}
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // ── Filtering ───────────────────────────────────────────────────────────
+    function getFilteredPlants() {
+        return shopPlants.filter(p => {
+            if (activeFilters.cat !== 'All' && p.cat !== activeFilters.cat) return false;
+            if (activeFilters.diff !== 'All' && p.diff !== activeFilters.diff) return false;
+            if (activeFilters.season !== 'All' && p.season !== activeFilters.season) return false;
+            if (p.price > activeFilters.maxPrice) return false;
+            if (activeFilters.search && !p.name.toLowerCase().includes(activeFilters.search) && !p.sci.toLowerCase().includes(activeFilters.search) && !p.desc.toLowerCase().includes(activeFilters.search)) return false;
+            return true;
+        });
+    }
+
+    function filterShop() {
+        activeFilters.search = (document.getElementById('shopSearchInput').value || '').toLowerCase();
+        renderPlantGrid();
+    }
+
+    function selectCategoryChip(btn) {
+        document.querySelectorAll('#filterCategoryChips .filter-chip').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters.cat = btn.dataset.cat;
+        // sync cat pills
+        document.querySelectorAll('#catPillRow .cat-pill').forEach(c => {
+            c.classList.toggle('active', c.dataset.cat === btn.dataset.cat);
+        });
+        renderPlantGrid();
+    }
+
+    function catPillSelect(btn) {
+        document.querySelectorAll('#catPillRow .cat-pill').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters.cat = btn.dataset.cat;
+        // sync sidebar chips
+        document.querySelectorAll('#filterCategoryChips .filter-chip').forEach(c => {
+            c.classList.toggle('active', c.dataset.cat === btn.dataset.cat);
+        });
+        renderPlantGrid();
+    }
+
+    function selectDiffChip(btn) {
+        document.querySelectorAll('#filterDiffChips .filter-chip').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters.diff = btn.dataset.diff;
+        renderPlantGrid();
+    }
+
+    function selectSeasonChip(btn) {
+        document.querySelectorAll('#filterSeasonChips .filter-chip').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilters.season = btn.dataset.season;
+        renderPlantGrid();
+    }
+
+    function updatePriceLabel(val) {
+        document.getElementById('priceLabel').textContent = val;
+        activeFilters.maxPrice = parseInt(val);
+        renderPlantGrid();
+    }
+
+    function clearAllFilters() {
+        activeFilters = { cat: 'All', diff: 'All', season: 'All', maxPrice: 1000, search: '' };
+        document.getElementById('shopSearchInput').value = '';
+        document.getElementById('priceRange').value = 1000;
+        document.getElementById('priceLabel').textContent = '1000';
+        document.querySelectorAll('.filter-chip').forEach(c => {
+            if (c.dataset.cat === 'All' || c.dataset.diff === 'All' || c.dataset.season === 'All') c.classList.add('active');
+            else c.classList.remove('active');
+        });
+        document.querySelectorAll('.cat-pill').forEach(c => c.classList.toggle('active', c.dataset.cat === 'All'));
+        renderPlantGrid();
+    }
+
+    function toggleMobileFilters() {
+        const sidebar = document.getElementById('shopFiltersSidebar');
+        const overlay = document.getElementById('overlay');
+        sidebar.classList.toggle('mobile-open');
+        if (overlay) {
+            overlay.classList.toggle('active');
+            overlay.onclick = () => {
+                sidebar.classList.remove('mobile-open');
+                overlay.classList.remove('active');
+                overlay.onclick = closeSidebar;
+            };
+        }
+    }
+
+    // ── Cart Logic ──────────────────────────────────────────────────────────
+    function addToCart(plantId) {
+        const plant = shopPlants.find(p => p.id === plantId);
+        if (!plant) return;
+        const existing = shopCart.find(c => c.id === plantId);
+        if (existing) {
+            existing.qty = (existing.qty || 1) + 1;
+        } else {
+            shopCart.push({ ...plant, qty: 1 });
+        }
+        saveCart();
+        const btn = document.getElementById(`atc-${plantId}`);
+        if (btn) {
+            btn.innerHTML = '<i class="fas fa-check"></i> Added';
+            btn.classList.add('in-cart');
+        }
+        updateCartUI();
+        showToast(`🛒 ${plant.name} added to cart!`);
+    }
+
+    function removeFromCart(plantId) {
+        shopCart = shopCart.filter(c => c.id !== plantId);
+        saveCart();
+        updateCartUI();
+        renderPlantGrid();
+    }
+
+    function changeQty(plantId, delta) {
+        const item = shopCart.find(c => c.id === plantId);
+        if (!item) return;
+        item.qty = Math.max(1, (item.qty || 1) + delta);
+        saveCart();
+        updateCartUI();
+    }
+
+    function saveCart() {
+        localStorage.setItem('zen-shop-cart', JSON.stringify(shopCart));
+    }
+
+    function updateCartUI() {
+        const badge = document.getElementById('cartBadge');
+        const footer = document.getElementById('cartFooter');
+        const listEl = document.getElementById('cartItemsList');
+        const total = shopCart.reduce((s, c) => s + (c.price * (c.qty || 1)), 0);
+        const count = shopCart.reduce((s, c) => s + (c.qty || 1), 0);
+
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'flex' : 'none';
+
+        if (shopCart.length === 0) {
+            listEl.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty.<br>Add some plants to get started!</p></div>`;
+            footer.style.display = 'none';
+        } else {
+            listEl.innerHTML = shopCart.map(c => `
+                <div class="cart-item">
+                    <div class="cart-item-emoji">${c.emoji}</div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${c.name}</div>
+                        <div class="cart-item-meta">${c.cat} · ${c.origin || 'Bihar, India'}</div>
+                        <div class="cart-item-price">₹${c.price * (c.qty||1)}</div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+                        <button onclick="removeFromCart(${c.id})" style="background:none;border:none;color:#ef5350;cursor:pointer;font-size:0.8rem;"><i class="fas fa-trash"></i></button>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="changeQty(${c.id},-1)">−</button>
+                            <span class="qty-val">${c.qty||1}</span>
+                            <button class="qty-btn" onclick="changeQty(${c.id},1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            footer.style.display = 'block';
+            document.getElementById('cartTotal').textContent = `₹${total}`;
+        }
+    }
+
+    function toggleCart() {
+        const drawer = document.getElementById('cartDrawer');
+        const overlay = document.getElementById('cartOverlay');
+        const isOpen = drawer.classList.contains('open');
+        drawer.classList.toggle('open');
+        overlay.style.display = isOpen ? 'none' : 'block';
+    }
+
+    // ── Payment Modal ────────────────────────────────────────────────────────
+    function openPaymentModal() {
+        const total = shopCart.reduce((s, c) => s + (c.price * (c.qty || 1)), 0);
+        document.getElementById('payAmountDisplay').textContent = `₹${total}`;
+        const upiId = 'zengardening@upi';
+        const upiUri = `upi://pay?pa=${upiId}&pn=ZENGardening&am=${total}&cu=INR&tn=PlantShopOrder`;
+        document.getElementById('payQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUri)}`;
+        document.getElementById('utrInput').value = '';
+        document.getElementById('paymentModal').classList.add('open');
+        toggleCart(); // close cart drawer
+    }
+
+    function closePaymentModal() {
+        document.getElementById('paymentModal').classList.remove('open');
+    }
+
+    function submitShopOrder() {
+        const utr = document.getElementById('utrInput').value.trim();
+        if (!utr) { showToast('⚠️ Please enter your UTR / Transaction ID after payment.'); return; }
+
+        // Save order to localStorage
+        const orders = JSON.parse(localStorage.getItem('zen-orders') || '[]');
+        const total = shopCart.reduce((s, c) => s + (c.price * (c.qty || 1)), 0);
+        const itemNames = shopCart.map(c => `${c.name} (×${c.qty||1})`).join(', ');
+        orders.unshift({
+            student: 'Shop Customer',
+            course: itemNames,
+            amount: `₹${total}`,
+            method: 'UPI QR',
+            date: new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }),
+            status: 'Pending Verification',
+            utr: utr
+        });
+        localStorage.setItem('zen-orders', JSON.stringify(orders));
+
+        // Clear cart
+        shopCart = [];
+        saveCart();
+        updateCartUI();
+        renderPlantGrid();
+        closePaymentModal();
+        document.getElementById('orderSuccessOverlay').classList.add('open');
+    }
+
+    function closeOrderSuccess() {
+        document.getElementById('orderSuccessOverlay').classList.remove('open');
+    }
+
+    // ── Product Modal ────────────────────────────────────────────────────────
+    function openProductModal(plantId) {
+        const p = shopPlants.find(x => x.id === plantId);
+        if (!p) return;
+        currentProductModal = p;
+
+        document.getElementById('pmEmoji').textContent = p.emoji;
+        document.getElementById('pmName').textContent = p.name;
+        document.getElementById('pmSci').textContent = p.sci;
+        document.getElementById('pmDesc').textContent = p.desc;
+        document.getElementById('pmSeason').textContent = p.season;
+        document.getElementById('pmDiff').textContent = p.diff;
+        document.getElementById('pmCat').textContent = p.cat;
+        document.getElementById('pmOrigin').textContent = p.origin || 'Bihar, India';
+        document.getElementById('pmPrice').textContent = `₹${p.price}`;
+
+        const badge = document.getElementById('pmBadge');
+        badge.textContent = p.cat;
+        badge.className = `plant-card-badge ${p.badge}`;
+
+        const addBtn = document.getElementById('pmAddBtn');
+        const inCart = shopCart.some(c => c.id === p.id);
+        addBtn.innerHTML = inCart ? '<i class="fas fa-check"></i> Added to Cart' : '<i class="fas fa-cart-plus"></i> Add to Cart';
+
+        document.getElementById('productModal').classList.add('open');
+    }
+
+    function closeProductModal() {
+        document.getElementById('productModal').classList.remove('open');
+        currentProductModal = null;
+    }
+
+    function addToCartFromModal() {
+        if (currentProductModal) {
+            addToCart(currentProductModal.id);
+            const btn = document.getElementById('pmAddBtn');
+            btn.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+        }
+    }
+
+    // Close modals on background click
+    document.getElementById('productModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('productModal')) closeProductModal();
+    });
+    document.getElementById('paymentModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('paymentModal')) closePaymentModal();
+    });
+
+    // ── Wishlist (Toggle heart colour) ──────────────────────────────────────
+    function wishlistToggle(id, btn) {
+        btn.style.background = btn.style.background === 'rgba(229, 115, 115, 0.9)' ? 'rgba(255,255,255,0.9)' : 'rgba(229, 115, 115, 0.9)';
+        btn.style.color = btn.style.color === 'white' ? '#e57373' : 'white';
+        showToast('💚 Wishlist updated!');
+    }
+
+    // ── Search input enter key ───────────────────────────────────────────────
+    document.getElementById('shopSearchInput').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') filterShop();
+        else {
+            activeFilters.search = e.target.value.toLowerCase();
+            renderPlantGrid();
+        }
+    });
+
+    // ── Navbar/Sidebar Init ───────────────────────────────────────────────────
+    function initNavbarSidebar() {
+        const token = localStorage.getItem('zengardining-authtoken');
+        const navLinks = document.getElementById('navLinks');
+        const sidebar = document.getElementById('sidebar');
+
+        if (token) {
+            if (navLinks) {
+                navLinks.innerHTML = `
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/shop" class="active">Shop</a></li>
+                    <li><a href="/blog">Blogs</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/home" class="login-btn">Dashboard</a></li>
+                    <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+                    <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
+                `;
+            }
+            if (sidebar) {
+                sidebar.innerHTML = `
+                    <div class="sidebar-header">
+                        <div class="sidebar-avatar"><i class="fas fa-user"></i></div>
+                        <div class="sidebar-logo">🌿 ZENGardening</div>
+                        <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                        <a class="sidebar-item active-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                        <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                        <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                        <a class="sidebar-item" href="/home"><i class="fas fa-th-large"></i> Dashboard</a>
+                        <a class="sidebar-item" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </nav>
+                `;
+            }
+        } else {
+            if (navLinks) {
+                navLinks.innerHTML = `
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/shop" class="active">Shop</a></li>
+                    <li><a href="/blog">Blogs</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/login" class="login-btn">Login</a></li>
+                    <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+                    <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
+                `;
+            }
+            if (sidebar) {
+                sidebar.innerHTML = `
+                    <div class="sidebar-header">
+                        <div class="sidebar-logo">🌿 ZENGardening</div>
+                        <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                        <a class="sidebar-item active-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                        <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                        <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                        <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+                    </nav>
+                `;
+            }
+        }
+
+        // Apply saved theme
+        const savedTheme = localStorage.getItem('zen-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        const themeBtn = document.getElementById('themeBtn');
+        if (themeBtn) themeBtn.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+
+    function logoutUser() {
+        localStorage.removeItem('zengardining-authtoken');
+        window.location.href = '/';
+    }
+
+    // ── Init ─────────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        initNavbarSidebar();
+        renderPlantGrid();
+        updateCartUI();
+    });
+    </script>
+</body>
+</html>

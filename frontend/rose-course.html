@@ -1,126 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rose Gardening Course</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 2rem;
-            background: #fff0f5;
-            color: #333;
-        }
-        
-        h1 {
-            color: #c2185b;
-        }
-        
-        .course-info {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
-            margin: auto;
-        }
-        
-        .back-btn {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #fff;
-            background: #c2185b;
-            padding: 10px 20px;
-            border-radius: 8px;
-        }
-        
-        .enroll-btn {
-            background: green;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-top: 10px;
-            display: inline-block;
-        }
-        
-        .course-image {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 1rem;
-            padding: 8px;
-            background: linear-gradient(145deg, #ffffff, #e6e6e6);
-            border: 3px solid #ddd;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), inset 0 0 10px rgba(255, 255, 255, 0.5);
-            box-sizing: border-box;
-        }
-        
-        .course-image:hover {
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25), inset 0 0 10px rgba(255, 255, 255, 0.6);
-            transform: scale(1.01);
-            transition: all 0.3s ease;
-        }
-        
-        .course-info {
-            text-align: center;
-        }
-        
-        video {
-            border-radius: 12px;
-            margin-top: 1rem;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Gardening Masterclass – ZENGardening</title>
+    <meta name="description" content="Master the art of cultivating healthy, blooming roses on your terrace or balcony. Video tutorials, soil mix recipes, and pruning guides.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
 </head>
-
 <body>
-    <figcaption style="text-align: center; font-style: italic; margin-top: 0.5rem;">
-        A blooming rose plant in full glory 🌹
-    </figcaption>
-    <div class="course-info">
-        <img src="rose1.jpg" alt="Rose Gardening" class="course-image" />
-        <h1>🌹 Rose Gardening Course</h1>
-        <p>Learn how to grow and maintain beautiful rose plants with ease. This course covers soil preparation, pruning techniques, common pests, and blooming strategies.</p>
 
-        <h3>What You'll Learn:</h3>
-        <ul>
-            <li>Types of roses and their care</li>
-            <li>Proper soil and fertilizer techniques</li>
-            <li>Pest management</li>
-            <li>Pruning and blooming</li>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='/'">🌿 ZENGardening</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/blog">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login" class="login-btn" id="nav-btn">Login</a></li>
+            <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+            <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
         </ul>
+    </nav>
 
-        <h3>Instructor</h3>
-        <p><strong>Ms. Priya Sharma</strong> – Horticulture expert with 10+ years of experience in flower gardening.</p>
-
-        <h3>Course Details</h3>
-        <ul>
-            <li><strong>Duration:</strong> 4 weeks (3 sessions per week)</li>
-            <li><strong>Format:</strong> Video tutorials + downloadable PDFs</li>
-            <li><strong>Level:</strong> Beginner to Intermediate</li>
-        </ul>
-
-        <h3>Course Preview</h3>
-        <video controls width="100%">
-      <source src="rose-preview.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-        <h3>Enrollment</h3>
-        <p><strong>Price:</strong> ₹199/-</p>
-        <a href="enroll.html" class="enroll-btn">Enroll Now</a>
-
-        <h3>What Students Say</h3>
-        <ul>
-            <li>🌟🌟🌟🌟🌟 “The best gardening course I’ve taken online!” – Aarti M.</li>
-            <li>🌟🌟🌟🌟 “Very detailed and easy to follow.” – Raj K.</li>
-        </ul>
-
-        <a href="index.html" class="back-btn">⬅ Back to Courses</a>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <!-- Generated Dynamically based on Auth State -->
     </div>
-</body>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
+    <!-- HERO HEADER -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Rose Gardening Masterclass 🌹</h1>
+            <p>Learn soil preparation, pruning techniques, pest control, and seasonal blooming routines to grow spectacular roses.</p>
+        </div>
+    </section>
+
+    <!-- COURSE INFO DETAILS -->
+    <main class="about-page">
+        <section class="about-intro" style="text-align: center;">
+            <img src="rose1.jpg" alt="Vibrant Roses" class="profile-image" style="width: 100%; max-height: 280px; border-radius: 18px; object-fit: cover;">
+            <p class="lead" style="margin-top: 16px;">Transform your balcony or terrace into a sweet-scented rose garden. Led by professional botanist Priya Sharma.</p>
+        </section>
+
+        <section class="story-syllabus">
+            <h2>📚 What You'll Master</h2>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 12px; font-size: 0.92rem;"><i class="fas fa-check-circle" style="color:var(--accent); margin-right: 8px;"></i> <strong>Soil &amp; Pot Selection:</strong> Crafting the ideal well-draining, nutrient-rich soil mix for container roses.</li>
+                <li style="margin-bottom: 12px; font-size: 0.92rem;"><i class="fas fa-check-circle" style="color:var(--accent); margin-right: 8px;"></i> <strong>Pruning Schedules:</strong> Learn the exact cut angles and timelines for maximum spring blooms.</li>
+                <li style="margin-bottom: 12px; font-size: 0.92rem;"><i class="fas fa-check-circle" style="color:var(--accent); margin-right: 8px;"></i> <strong>Organic Pest Protection:</strong> Eliminate aphids, scales, and black spot disease without chemicals.</li>
+                <li style="margin-bottom: 12px; font-size: 0.92rem;"><i class="fas fa-check-circle" style="color:var(--accent); margin-right: 8px;"></i> <strong>Watering Routines:</strong> Calibrating irrigation schedules to avoid root rot and nutrient leaching.</li>
+            </ul>
+        </section>
+
+        <section class="instructor-details">
+            <h2>Meet Your Instructor</h2>
+            <div class="team-member" style="text-align: left; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                <div class="sidebar-avatar" style="width: 80px; height: 80px; font-size: 2.2rem; border-radius: 50%;"><i class="fas fa-user-tie"></i></div>
+                <div style="flex: 1; min-width: 240px;">
+                    <h3 style="margin-bottom: 2px;">Ms. Priya Sharma</h3>
+                    <p class="title" style="margin-bottom: 8px; font-size:0.75rem;">Lead Florist &amp; Gardening Expert</p>
+                    <p style="font-size: 0.88rem; margin-bottom: 0;">Priya has over 10 years of experience designing floral landscapes and rooftop container gardens across Delhi and Bangalore. Her classes emphasize organic fertilization and plant longevity.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="syllabus-details">
+            <h2>Course Specifications</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 14px;">
+                <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center;">
+                    <i class="fas fa-clock" style="font-size:1.4rem; color:var(--accent); margin-bottom: 8px;"></i>
+                    <h4 style="font-size:0.85rem; font-weight:700;">Duration</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">4 Weeks Lessons</p>
+                </div>
+                <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center;">
+                    <i class="fas fa-video" style="font-size:1.4rem; color:var(--accent); margin-bottom: 8px;"></i>
+                    <h4 style="font-size:0.85rem; font-weight:700;">Format</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">HD Video &amp; PDF Guides</p>
+                </div>
+                <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center;">
+                    <i class="fas fa-signal" style="font-size:1.4rem; color:var(--accent); margin-bottom: 8px;"></i>
+                    <h4 style="font-size:0.85rem; font-weight:700;">Level</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Beginner &amp; Amateur</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <h2>What Gardeners Say</h2>
+            <blockquote style="margin: 14px 0; padding-left: 18px; border-left: 3px solid var(--accent); font-style: italic; font-size: 0.9rem;">
+                "My terrace rose bushes were plagued by white bugs and never flowered. Following Priya's pruning advice, they bloomed beautifully this summer!"
+                <cite style="display:block; margin-top:4px; font-weight:600; font-style:normal; font-size:0.8rem; color:var(--text-muted);">— Sunita Patel, Bangalore</cite>
+            </blockquote>
+        </section>
+
+        <section class="contact-cta" style="text-align: center; background: var(--accent-glow); border-color: var(--accent);">
+            <h2 style="border:none; padding:0; color: var(--accent);">Enroll Now for Just ₹199/-</h2>
+            <p>Get lifetime access to video tutorials, compost calculators, and peer Q&amp;A support.</p>
+            <a href="/enroll?course=Rose%20Gardening" class="button" style="background: var(--btn-primary);"><i class="fas fa-shopping-cart"></i> Unlock Masterclass</a>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🌿 ZENGardening</h4>
+                <p>Helping urban gardeners create beautiful green spaces on balconies and terrace properties.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/blog">Blogs</a>
+                <a href="/contact">Contact</a>
+                <a href="/about">About Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms &amp; Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p>ayushkrsingh008@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-copy">&copy; 2025 ZENGardening. All rights reserved.</div>
+    </footer>
+
+    <button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('zengardining-authtoken');
+            const navBtn = document.getElementById('nav-btn');
+            const sidebar = document.getElementById('sidebar');
+            
+            if (token) {
+                if (navBtn) {
+                    navBtn.innerText = 'Dashboard';
+                    navBtn.href = '/home';
+                }
+                if (sidebar) {
+                    sidebar.innerHTML = `
+                        <div class="sidebar-header">
+                            <div class="sidebar-logo">🌿 ZENGardening</div>
+                            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                        </div>
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                            <a class="sidebar-item" href="/home"><i class="fas fa-th-large"></i> Dashboard</a>
+                            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                            <a class="sidebar-item" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </nav>
+                    `;
+                }
+            } else {
+                if (sidebar) {
+                    sidebar.innerHTML = `
+                        <div class="sidebar-header">
+                            <div class="sidebar-logo">🌿 ZENGardening</div>
+                            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+                        </div>
+                        <nav class="sidebar-nav">
+                            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+                            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+                            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+                            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                            <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+                        </nav>
+                    `;
+                }
+            }
+        });
+
+        function logoutUser() {
+            localStorage.removeItem('zengardining-authtoken');
+            window.location.reload();
+        }
+    </script>
+</body>
 </html>

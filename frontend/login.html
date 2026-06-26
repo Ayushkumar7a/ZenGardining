@@ -1,141 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Terrace Gardening</title>
-    <link rel="stylesheet" href="frontend/styles.css" />
-    <script src="frontend/script.js"></script>
-    <script src="frontend/login.js"></script>
-    <style>
-        body {
-            background: #e0e5ec;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .navbar {
-            background-color: #d4e3d4;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-        
-        main.login-page {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh;
-        }
-        
-        .neumorphic {
-            background: #e0e5ec;
-            border-radius: 20px;
-            box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
-        }
-        
-        .neumorphic-input {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            border-radius: 10px;
-            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
-            background: #e0e5ec;
-        }
-        
-        .neumorphic-button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 10px;
-            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
-            background: #e0e5ec;
-            font-weight: bold;
-        }
-        
-        .neumorphic-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            width: 350px;
-            text-align: center;
-        }
-        
-        .login-links {
-            margin-top: 10px;
-        }
-        
-        .login-links a {
-            font-size: 14px;
-            color: #007BFF;
-            text-decoration: none;
-        }
-        
-        footer {
-            background-color: #d4e3d4;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – ZENGardening</title>
+    <meta name="description" content="Log in to your ZENGardening account to access premium courses and tutorials.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <script defer src="login.js"></script>
 </head>
-
 <body>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">🌿 ZENGardening</div>
+        <div class="logo" onclick="window.location.href='/'">🌿 ZENGardening</div>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
             <li><a href="/blog">Blogs</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/signup" class="login-btn">Sign Up</a></li>
+            <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+            <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
         </ul>
     </nav>
+ 
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">🌿 ZENGardening</div>
+            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+            <a class="sidebar-item active-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        </nav>
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
+    <!-- MAIN LOGIN CARD -->
     <main class="login-page">
-        <section class="neumorphic neumorphic-card">
-            <h2>Login</h2>
-            <form id="loginForm" method="post" style="width: 100%;">
-                <input type="email" class="neumorphic-input" id="login-email" name="email" placeholder="Enter your email" required />
-                <input type="password" class="neumorphic-input" id="login-password" name="password" placeholder="Enter your password" required />
-                <input type="submit" class="neumorphic-button" value="Sign In">
+        <section class="neumorphic-card">
+            <h2>Welcome Back</h2>
+            <div class="alert-area" id="alertArea"></div>
+            
+            <form id="loginForm" novalidate>
+                <div style="text-align: left; margin-bottom: 4px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Email Address</label>
+                </div>
+                <input type="email" class="neumorphic-input" id="login-email" name="email" placeholder="you@example.com" required>
+                
+                <div style="text-align: left; margin-bottom: 4px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Password</label>
+                </div>
+                <input type="password" class="neumorphic-input" id="login-password" name="password" placeholder="••••••" required>
+                
+                <button type="submit" class="neumorphic-button">Sign In</button>
+                
                 <div class="login-links">
-                    <p><a href="forgot-password.html">Forgot your password?</a></p>
-                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                    <p><a href="/forgot-password">Forgot your password?</a></p>
+                    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
                 </div>
             </form>
         </section>
     </main>
 
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-container">© 2025 ZENGardening. All rights reserved.</div>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🌿 ZENGardening</h4>
+                <p>Helping urban gardeners create beautiful green spaces on balconies and terrace properties.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/blog">Blogs</a>
+                <a href="/contact">Contact</a>
+                <a href="/about">About Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms &amp; Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p>ayushkrsingh008@gmail.com</p>
+                <div class="footer-social-links" style="margin-top: 10px;">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy">&copy; 2025 ZENGardening. All rights reserved.</div>
     </footer>
 
-</body>
+    <button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
+</body>
 </html>

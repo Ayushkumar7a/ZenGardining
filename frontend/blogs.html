@@ -1,87 +1,471 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gardening Blogs - Terrace Gardening</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>Gardening Blogs – ZENGardening</title>
+    <meta name="description" content="Read the latest gardening blogs, tips, and guides from ZENGardening.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:#f0f4f0;--bg2:#fff;--navbar-bg:#fff;--text:#1a1a1a;--text-muted:#6b7280;
+            --border:#e5e7eb;--card-bg:#fff;--card-shadow:0 4px 24px rgba(0,0,0,.07);
+            --accent:#2e7d32;--accent2:#4caf50;--accent-glow:rgba(76,175,80,.18);
+            --sidebar-bg:#1a2e1a;--sidebar-text:#d4e8d4;
+            --btn-primary:linear-gradient(135deg,#2e7d32,#4caf50);
+            --hero-overlay:rgba(0,0,0,.5);--transition:.3s cubic-bezier(.4,0,.2,1);
+        }
+        [data-theme="dark"]{
+            --bg:#0f1a0f;--bg2:#162016;--navbar-bg:#0f1a0f;--text:#e8f5e9;
+            --text-muted:#9cbe9c;--border:#2a3d2a;--card-bg:#1a2e1a;
+            --card-shadow:0 4px 24px rgba(0,0,0,.4);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);}
+
+        /* NAVBAR */
+        .navbar{position:sticky;top:0;z-index:500;background:var(--navbar-bg);border-bottom:1px solid var(--border);
+            display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:64px;
+            backdrop-filter:blur(12px);box-shadow:0 2px 12px rgba(0,0,0,.05);}
+        .logo{font-size:1.3rem;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:8px;}
+        .nav-links{list-style:none;display:flex;align-items:center;gap:6px;}
+        .nav-links li a{color:var(--text);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:background var(--transition),color var(--transition);}
+        .nav-links li a:hover,.nav-links li a.active{background:var(--accent-glow);color:var(--accent);}
+        .login-btn{background:var(--btn-primary)!important;color:#fff!important;border-radius:8px!important;padding:8px 18px!important;}
+        .menu-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;
+            font-size:1.1rem;color:var(--text);border:1px solid var(--border);transition:background var(--transition);}
+        .menu-icon:hover{background:var(--accent-glow);color:var(--accent);}
+
+        /* SIDEBAR */
+        .sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:var(--sidebar-bg);z-index:1000;
+            display:flex;flex-direction:column;transition:left .35s cubic-bezier(.4,0,.2,1);box-shadow:4px 0 40px rgba(0,0,0,.35);}
+        .sidebar.active{left:0;}
+        .sidebar-header{padding:28px 24px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+        .sidebar-logo{font-size:1.1rem;font-weight:700;color:#81c784;margin-bottom:4px;}
+        .sidebar-tagline{font-size:.75rem;color:#6caa6c;}
+        .sidebar-nav{flex:1;padding:16px 12px;overflow-y:auto;}
+        .sidebar-item{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:12px;cursor:pointer;
+            color:#d4e8d4;font-size:.9rem;font-weight:500;transition:background .2s,color .2s,transform .2s;margin-bottom:4px;text-decoration:none;}
+        .sidebar-item:hover{background:rgba(76,175,80,.18);color:#81c784;transform:translateX(4px);}
+        .sidebar-item.active-item{background:linear-gradient(135deg,rgba(76,175,80,.3),rgba(46,125,50,.2));color:#a5d6a7;border-left:3px solid #4caf50;}
+        .sidebar-item i{width:18px;text-align:center;}
+        .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:900;display:none;}
+        .overlay.active{display:block;}
+
+        /* HERO */
+        .page-hero{
+            background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 40%,#388e3c 100%);
+            padding:72px 28px 80px;text-align:center;position:relative;overflow:hidden;
+        }
+        .page-hero::before{
+            content:'';position:absolute;inset:0;
+            background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .page-hero-content{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+        .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:12px;}
+        .page-hero p{color:rgba(255,255,255,.8);font-size:1.05rem;margin-bottom:28px;}
+        .hero-search{display:flex;max-width:480px;margin:0 auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+            backdrop-filter:blur(8px);border-radius:50px;overflow:hidden;}
+        .hero-search input{flex:1;background:transparent;border:none;outline:none;padding:14px 20px;color:#fff;font-size:.95rem;}
+        .hero-search input::placeholder{color:rgba(255,255,255,.6);}
+        .hero-search button{background:rgba(255,255,255,.2);border:none;padding:14px 20px;color:#fff;cursor:pointer;
+            font-size:1rem;transition:background .2s;}
+        .hero-search button:hover{background:rgba(255,255,255,.35);}
+
+        /* CATEGORY PILLS */
+        .categories{max-width:1100px;margin:0 auto;padding:28px 28px 0;display:flex;gap:10px;flex-wrap:wrap;}
+        .cat-pill{padding:8px 20px;border-radius:50px;font-size:.82rem;font-weight:600;cursor:pointer;
+            border:1.5px solid var(--border);color:var(--text-muted);background:var(--card-bg);transition:all .2s;}
+        .cat-pill:hover,.cat-pill.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+        /* BLOG GRID */
+        .blog-container{max-width:1100px;margin:0 auto;padding:28px;display:grid;
+            grid-template-columns:1fr 320px;gap:28px;align-items:start;}
+        @media(max-width:900px){.blog-container{grid-template-columns:1fr;}}
+
+        /* BLOG CARDS */
+        .blog-list{display:flex;flex-direction:column;gap:24px;}
+        .blog-card{background:var(--card-bg);border-radius:20px;overflow:hidden;border:1px solid var(--border);
+            box-shadow:var(--card-shadow);display:grid;grid-template-columns:240px 1fr;transition:transform .25s,box-shadow .25s;}
+        .blog-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.12);}
+        @media(max-width:640px){.blog-card{grid-template-columns:1fr;}}
+        .blog-card-img{height:200px;overflow:hidden;position:relative;}
+        .blog-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+        .blog-card:hover .blog-card-img img{transform:scale(1.06);}
+        .blog-card-tag{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;
+            font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;}
+        .blog-card-body{padding:24px;display:flex;flex-direction:column;justify-content:space-between;}
+        .blog-meta{font-size:.75rem;color:var(--text-muted);margin-bottom:10px;display:flex;align-items:center;gap:12px;}
+        .blog-meta i{color:var(--accent);}
+        .blog-card-body h2{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.4;}
+        .blog-card-body h2 a{text-decoration:none;color:inherit;transition:color .2s;}
+        .blog-card-body h2 a:hover{color:var(--accent);}
+        .blog-card-body p{font-size:.85rem;color:var(--text-muted);line-height:1.6;flex:1;}
+        .read-more-btn{display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+            background:var(--btn-primary);color:#fff;text-decoration:none;padding:9px 18px;
+            border-radius:10px;font-size:.8rem;font-weight:600;border:none;cursor:pointer;transition:opacity .2s,transform .2s;}
+        .read-more-btn:hover{opacity:.88;transform:translateY(-1px);}
+
+        /* FEATURED (first card) */
+        .blog-card.featured{grid-column:1/-1;grid-template-columns:1fr;grid-template-rows:auto 1fr;}
+        .blog-card.featured .blog-card-img{height:320px;}
+
+        /* SIDEBAR WIDGETS */
+        .blog-sidebar{display:flex;flex-direction:column;gap:20px;position:sticky;top:84px;}
+        .widget{background:var(--card-bg);border-radius:20px;border:1px solid var(--border);padding:24px;box-shadow:var(--card-shadow);}
+        .widget h3{font-size:.95rem;font-weight:700;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+        .widget-search{display:flex;gap:8px;}
+        .widget-search input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:10px;
+            background:var(--bg);color:var(--text);font-size:.85rem;outline:none;font-family:inherit;}
+        .widget-search input:focus{border-color:var(--accent2);}
+        .widget-search button{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;}
+        .widget-link{display:flex;align-items:center;justify-content:space-between;padding:10px 0;
+            border-bottom:1px solid var(--border);font-size:.85rem;color:var(--text-muted);cursor:pointer;transition:color .2s;}
+        .widget-link:last-child{border-bottom:none;}
+        .widget-link:hover{color:var(--accent);}
+        .widget-link .count{background:var(--accent-glow);color:var(--accent);font-size:.72rem;font-weight:700;
+            padding:2px 8px;border-radius:20px;}
+        .popular-post{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+        .popular-post:last-child{border-bottom:none;}
+        .popular-post img{width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0;}
+        .popular-post-info h4{font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:4px;cursor:pointer;transition:color .2s;}
+        .popular-post-info h4:hover{color:var(--accent);}
+        .popular-post-info span{font-size:.72rem;color:var(--text-muted);}
+        .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+        .tag{padding:5px 12px;border-radius:20px;border:1px solid var(--border);font-size:.75rem;font-weight:600;
+            color:var(--text-muted);cursor:pointer;transition:all .2s;}
+        .tag:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+        /* PAGINATION */
+        .pagination{display:flex;justify-content:center;gap:8px;padding:32px 28px;}
+        .page-btn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;
+            border:1px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer;font-size:.9rem;font-weight:600;transition:all .2s;}
+        .page-btn:hover,.page-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+        /* NEWSLETTER */
+        .newsletter-banner{background:linear-gradient(135deg,#1b5e20,#2e7d32);margin:0 28px 40px;border-radius:24px;
+            padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+        .newsletter-text h2{color:#fff;font-size:1.3rem;font-weight:700;margin-bottom:8px;}
+        .newsletter-text p{color:rgba(255,255,255,.75);font-size:.88rem;}
+        .newsletter-form{display:flex;gap:10px;flex-wrap:wrap;}
+        .newsletter-form input{padding:12px 20px;border-radius:50px;border:none;font-size:.9rem;
+            width:260px;outline:none;font-family:inherit;}
+        .newsletter-form button{background:#fff;color:#2e7d32;border:none;padding:12px 24px;border-radius:50px;
+            font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;}
+        .newsletter-form button:hover{background:#c8e6c9;}
+
+        /* FOOTER */
+        footer{background:#1a2e1a;color:#c8e6c9;padding:48px 28px 24px;}
+        .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:36px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08);}
+        .footer-col h4{color:#81c784;font-size:.9rem;font-weight:700;margin-bottom:16px;}
+        .footer-col p,.footer-col a{font-size:.83rem;color:#9cbe9c;text-decoration:none;display:block;margin-bottom:8px;transition:color .2s;}
+        .footer-col a:hover{color:#a5d6a7;}
+        .footer-social{display:flex;gap:12px;margin-top:8px;}
+        .footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);
+            display:flex;align-items:center;justify-content:center;color:#9cbe9c;font-size:.95rem;transition:background .2s,color .2s;}
+        .footer-social a:hover{background:#2e7d32;color:#fff;}
+        .footer-copy{text-align:center;margin-top:20px;font-size:.78rem;color:#6caa6c;}
+        #goTopBtn{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;
+            background:var(--btn-primary);color:#fff;border:none;font-size:1.1rem;cursor:pointer;
+            display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(46,125,50,.45);z-index:400;transition:transform .2s;}
+        #goTopBtn:hover{transform:translateY(-3px);}
+
+        /* DARK MODE TOGGLE */
+        .theme-btn{background:transparent;border:1px solid var(--border);color:var(--text);width:36px;height:36px;
+            border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+        .theme-btn:hover{background:var(--accent-glow);color:var(--accent);border-color:var(--accent);}
+
+        /* RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .nav-links li { display: none; }
+            .nav-links li:has(.theme-btn),
+            .nav-links li:has(#themeBtn),
+            .nav-links li:has(.menu-icon) { display: block; }
+            .sidebar { width: 260px; }
+            .categories { padding: 20px 20px 0; }
+            .blog-container { padding: 20px; }
+            .newsletter-banner { margin: 0 20px 28px; padding: 28px 24px; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+        }
+        @media (max-width: 580px) {
+            .page-hero { padding: 56px 16px 60px; }
+            .page-hero h1 { font-size: 1.8rem; }
+            .page-hero p { font-size: 0.95rem; }
+            .newsletter-banner { padding: 24px 20px; }
+            .newsletter-form { flex-direction: column; width: 100%; }
+            .newsletter-form input { width: 100%; }
+            .newsletter-form button { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="logo">🌿 ZENGardening</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html" class="login-btn">Login</a></li>
-            <li class="menu-icon" onclick="toggleMenu()">☰</li>
 
-        </ul>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">🌿 ZENGardening</div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/blog" class="active">Blogs</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/login" class="login-btn">Login</a></li>
+        <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme"><i class="fas fa-moon"></i></button></li>
+        <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
+    </ul>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">🌿 ZENGardening</div>
+        <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+    </div>
+    <nav class="sidebar-nav">
+        <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+        <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+        <a class="sidebar-item active-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+        <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+        <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+        <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a class="sidebar-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
     </nav>
-    <div id="sidebar">
-        <a href="#">My Account</a>
-        <a href="#">All Services</a>
-        <a href="#">Dashboard</a>
+</div>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <h1>Gardening Blogs & Guides</h1>
+        <p>Tips, tutorials and stories to help you grow your perfect garden</p>
+        <div class="hero-search">
+            <input type="text" placeholder="Search articles…" id="searchInput">
+            <button onclick="handleSearch()"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORY PILLS -->
+<div class="categories">
+    <div class="cat-pill active" onclick="filterCategory(this,'all')">🌿 All Posts</div>
+    <div class="cat-pill" onclick="filterCategory(this,'flowers')">🌸 Flower Gardening</div>
+    <div class="cat-pill" onclick="filterCategory(this,'vegetables')">🥦 Vegetables</div>
+    <div class="cat-pill" onclick="filterCategory(this,'herbs')">🌿 Herbs</div>
+    <div class="cat-pill" onclick="filterCategory(this,'pest')">🐛 Pest Control</div>
+    <div class="cat-pill" onclick="filterCategory(this,'tips')">💡 Quick Tips</div>
+</div>
+
+<!-- MAIN BLOG GRID -->
+<div class="blog-container">
+    <div class="blog-list" id="blogList">
+        <!-- Rendered Dynamically from LocalStorage -->
     </div>
 
-
-    <main class="blogs-page">
-        <h1>Gardening Blogs</h1>
-
-        <div class="blog-list">
-            <article class="blog-post">
-                <h2><a href="blog-post-1.html">The Joy of Growing Your Own Tomatoes</a></h2>
-                <p class="post-meta">
-                    Published on <time datetime="2025-03-25">March 25, 2025</time> by [Author Name] | Category: Vegetable Gardening
-                </p>
-                <img src="tomato-blog-image.jpg" alt="Growing Tomatoes">
-                <p>An excerpt from the blog post about the satisfaction of harvesting your own ripe tomatoes...</p>
-                <p><a href="blog-post-1.html" class="read-more">Read More</a></p>
-            </article>
-
-            <article class="blog-post">
-                <h2><a href="blog-post-2.html">Choosing the Right Roses for Your Terrace</a></h2>
-                <p class="post-meta">
-                    Published on <time datetime="2025-03-15">March 15, 2025</time> by [Author Name] | Category: Flower Gardening
-                </p>
-                <img src="rose-blog-image.jpg" alt="Terrace Roses">
-                <p>A brief introduction to different types of roses that thrive in terrace gardens...</p>
-                <p><a href="blog-post-2.html" class="read-more">Read More</a></p>
-            </article>
-
+    <!-- SIDEBAR -->
+    <aside class="blog-sidebar">
+        <div class="widget">
+            <h3><i class="fas fa-search"></i> Search</h3>
+            <div class="widget-search">
+                <input type="text" placeholder="Search articles…">
+                <button><i class="fas fa-search"></i></button>
+            </div>
         </div>
 
-        <aside class="blog-sidebar">
-            <div class="sidebar-widget">
-                <h3>Search Blogs</h3>
-                <input type="text" placeholder="Search...">
-                <button>Search</button>
-            </div>
-            <div class="sidebar-widget">
-                <h3>Categories</h3>
-                <ul>
-                    <li><a href="#">Vegetable Gardening</a></li>
-                    <li><a href="#">Flower Gardening</a></li>
-                    <li><a href="#">Herbs</a></li>
-                    <li><a href="#">Pest Control</a></li>
-                </ul>
-            </div>
-        </aside>
-
-        <div class="pagination">
-            <a href="#">Previous</a>
-            <span class="current-page">1</span>
-            <a href="#">2</a>
-            <a href="#">Next</a>
+        <div class="widget">
+            <h3><i class="fas fa-layer-group"></i> Categories</h3>
+            <div class="widget-link" onclick="filterCategory(null,'flowers')">🌸 Flower Gardening <span class="count">8</span></div>
+            <div class="widget-link" onclick="filterCategory(null,'vegetables')">🥦 Vegetables <span class="count">12</span></div>
+            <div class="widget-link" onclick="filterCategory(null,'herbs')">🌿 Herbs <span class="count">5</span></div>
+            <div class="widget-link" onclick="filterCategory(null,'pest')">🐛 Pest Control <span class="count">4</span></div>
+            <div class="widget-link" onclick="filterCategory(null,'tips')">💡 Quick Tips <span class="count">9</span></div>
         </div>
-    </main>
 
-    <footer>
-    </footer>
-    <script src="script.js"></script>
+        <div class="widget">
+            <h3><i class="fas fa-fire"></i> Popular Posts</h3>
+            <div class="popular-post">
+                <img src="rose.jpg" alt="Rose">
+                <div class="popular-post-info"><h4>The Ultimate Rose Care Guide</h4><span><i class="fas fa-eye"></i> 2.4k views</span></div>
+            </div>
+            <div class="popular-post">
+                <img src="dahlia.jpg" alt="Dahlia">
+                <div class="popular-post-info"><h4>Dahlia Growing Secrets</h4><span><i class="fas fa-eye"></i> 1.8k views</span></div>
+            </div>
+            <div class="popular-post">
+                <img src="lavender.jpg" alt="Lavender">
+                <div class="popular-post-info"><h4>Lavender in Small Spaces</h4><span><i class="fas fa-eye"></i> 1.2k views</span></div>
+            </div>
+        </div>
+
+        <div class="widget">
+            <h3><i class="fas fa-tags"></i> Tags</h3>
+            <div class="tag-cloud">
+                <span class="tag">Roses</span><span class="tag">Organic</span><span class="tag">Balcony</span>
+                <span class="tag">Watering</span><span class="tag">Seeds</span><span class="tag">Compost</span>
+                <span class="tag">Pots</span><span class="tag">Sunlight</span><span class="tag">Pruning</span>
+                <span class="tag">Herbs</span>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- PAGINATION -->
+<div class="pagination">
+    <div class="page-btn active">1</div>
+    <div class="page-btn">2</div>
+    <div class="page-btn">3</div>
+    <div class="page-btn"><i class="fas fa-chevron-right"></i></div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-banner">
+    <div class="newsletter-text">
+        <h2>📬 Get Garden Tips in Your Inbox</h2>
+        <p>Join 5,000+ gardeners who receive our weekly gardening newsletter.</p>
+    </div>
+    <div class="newsletter-form">
+        <input type="email" placeholder="Your email address" id="nlEmail">
+        <button onclick="subscribeNewsletter()">Subscribe Free</button>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col"><h4>🌿 ZENGardening</h4><p>Helping urban gardeners create beautiful green spaces on terraces and balconies.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/blog">Blogs</a><a href="/contact">Contact</a><a href="/about">About Us</a></div>
+        <div class="footer-col"><h4>Legal</h4><a href="/privacy">Privacy Policy</a><a href="/terms">Terms & Conditions</a></div>
+        <div class="footer-col"><h4>Connect</h4><p>ayushkrsingh008@gmail.com</p><div class="footer-social"><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></div></div>
+    </div>
+    <div class="footer-copy">© 2025 ZENGardening. All rights reserved. Made with 🌿 and passion.</div>
+</footer>
+
+<button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+let blogs = JSON.parse(localStorage.getItem('zen-blogs')) || [];
+
+function toggleMenu(){document.getElementById('sidebar').classList.toggle('active');document.getElementById('overlay').classList.toggle('active');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('active');document.getElementById('overlay').classList.remove('active');}
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+window.addEventListener('scroll',function(){const b=document.getElementById('goTopBtn');b.style.display=window.scrollY>200?'flex':'none';});
+
+function renderBlogsList(cat = 'all', searchStr = '') {
+    const listContainer = document.getElementById('blogList');
+    if (!listContainer) return;
+    
+    let filtered = blogs.filter(b => b.status === 'Published');
+    
+    if (cat !== 'all') {
+        filtered = filtered.filter(b => b.cat === cat);
+    }
+    
+    if (searchStr) {
+        filtered = filtered.filter(b => b.title.toLowerCase().includes(searchStr) || b.excerpt.toLowerCase().includes(searchStr));
+    }
+    
+    if (filtered.length === 0) {
+        listContainer.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);grid-column: 1/-1;">No blogs found matching the criteria. 🌿</div>`;
+        return;
+    }
+    
+    listContainer.innerHTML = filtered.map((b, index) => {
+        const isFeatured = index === 0 && cat === 'all' && !searchStr;
+        const imgPath = b.image ? (b.image.startsWith('http') || b.image.startsWith('/') ? b.image : '/' + b.image) : '/rose.jpg';
+        return `
+            <div class="blog-card ${isFeatured ? 'featured' : ''}" data-cat="${b.cat}">
+                <div class="blog-card-img">
+                    <img src="${imgPath}" alt="${b.title}">
+                    <span class="blog-card-tag">${b.cat}</span>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-meta">
+                        <i class="fas fa-calendar-alt"></i> ${b.date} &nbsp;|&nbsp; 
+                        <i class="fas fa-user"></i> ${b.author || 'Ayush Kumar'} &nbsp;|&nbsp; 
+                        <i class="fas fa-eye"></i> ${b.views || 0} views
+                    </div>
+                    <h2><a href="#" onclick="alert('🌿 This premium blog post reading is a feature of ZENGardening Premium Membership!')">${b.title}</a></h2>
+                    <p>${b.excerpt || ''}</p>
+                    <a href="#" onclick="alert('🌿 This premium blog post reading is a feature of ZENGardening Premium Membership!')" class="read-more-btn">
+                        <i class="fas fa-arrow-right"></i> Read More
+                    </a>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function filterCategory(el, cat) {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    if (el) {
+        el.classList.add('active');
+    } else {
+        const pills = document.querySelectorAll('.cat-pill');
+        pills.forEach(p => {
+            if (p.getAttribute('onclick') && p.getAttribute('onclick').includes(`'${cat}'`)) {
+                p.classList.add('active');
+            }
+        });
+    }
+    
+    const searchVal = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase() : '';
+    renderBlogsList(cat, searchVal);
+}
+
+function handleSearch() {
+    const v = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase() : '';
+    const activePill = document.querySelector('.cat-pill.active');
+    const cat = activePill && activePill.getAttribute('onclick') ? activePill.getAttribute('onclick').match(/'([^']+)'/)[1] : 'all';
+    renderBlogsList(cat, v);
+}
+
+function subscribeNewsletter(){
+    const e=document.getElementById('nlEmail').value;
+    if(!e)return;
+    alert('🌿 Subscribed! Welcome to the ZENGardening community.');
+    document.getElementById('nlEmail').value='';
+}
+
+function toggleTheme(){
+    const h=document.documentElement;
+    const d=h.getAttribute('data-theme')==='dark';
+    h.setAttribute('data-theme',d?'light':'dark');
+    document.getElementById('themeBtn').innerHTML=d?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>';
+    localStorage.setItem('zen-theme',d?'light':'dark');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderBlogsList();
+    
+    const sInput = document.getElementById('searchInput');
+    if (sInput) {
+        sInput.addEventListener('input', handleSearch);
+    }
+    
+    const widgetSearchInput = document.querySelector('.widget-search input');
+    const widgetSearchBtn = document.querySelector('.widget-search button');
+    if (widgetSearchInput) {
+        widgetSearchInput.addEventListener('input', (e) => {
+            if (sInput) {
+                sInput.value = e.target.value;
+                handleSearch();
+            }
+        });
+    }
+});
+
+(function(){
+    const s=localStorage.getItem('zen-theme');
+    if(s==='dark'){
+        document.documentElement.setAttribute('data-theme','dark');
+        document.addEventListener('DOMContentLoaded',function(){
+            const b=document.getElementById('themeBtn');
+            if(b)b.innerHTML='<i class="fas fa-sun"></i>';
+        });
+    }
+})();
+</script>
 </body>
-
 </html>

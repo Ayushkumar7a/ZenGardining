@@ -1,131 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up - ZENGardening</title>
-    <link rel="stylesheet" href="/frontend/styles.css" />
-    <script src="/frontend/signup.js"></script>
-    <style>
-        body {
-            background: #e0e5ec;
-            font-family: Arial, sans-serif;
-        }
-        
-        .neumorphic-card {
-            background: #e0e5ec;
-            border-radius: 20px;
-            box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
-            padding: 40px;
-            width: 380px;
-            margin: 60px auto;
-            text-align: center;
-        }
-        
-        .neumorphic-input,
-        .neumorphic-button {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border: none;
-            font-size: 16px;
-        }
-        
-        .neumorphic-input {
-            background: #e0e5ec;
-            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
-            outline: none;
-        }
-        
-        .neumorphic-button {
-            background: #e0e5ec;
-            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .form-extra {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            margin-top: 15px;
-        }
-        
-        .login-link {
-            margin-top: 20px;
-            font-size: 14px;
-        }
-        
-        a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        
-        footer {
-            background-color: #d4e3d4;
-            bottom: 0%;
-        }
-        
-        .footer-container {
-            color: black;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up – ZENGardening</title>
+    <meta name="description" content="Create a ZENGardening account to learn rose, vegetable and herb growing.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <script defer src="signup.js"></script>
 </head>
-
 <body>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">🌿 ZENGardening</div>
+        <div class="logo" onclick="window.location.href='/'">🌿 ZENGardening</div>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
             <li><a href="/blog">Blogs</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login" class="login-btn">Login</a></li>
+            <li><button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button></li>
+            <li><div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div></li>
         </ul>
     </nav>
-    <main>
-        <section class="neumorphic-card">
-            <div id="alertArea"></div>
-            <h2>Create Account</h2>
-            <form id="signupForm" method="post">
-                <input type="text" id="name" name="name" class="neumorphic-input" placeholder="Full Name" required />
-                <input type="email" id="email" name="email" class="neumorphic-input" placeholder="Email Address" required />
-                <input type="password" id="password" name="password" class="neumorphic-input" placeholder="Password" required />
-                <input type="password" id="confirm-password" name="confirmPassword" class="neumorphic-input" placeholder="Confirm Password" required />
+ 
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">🌿 ZENGardening</div>
+            <div class="sidebar-tagline">Grow beautiful. Live green.</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="sidebar-item" href="/"><i class="fas fa-home"></i> Home</a>
+            <a class="sidebar-item" href="/shop"><i class="fas fa-store"></i> Plant Shop</a>
+            <a class="sidebar-item" href="/blog"><i class="fas fa-newspaper"></i> Blogs</a>
+            <a class="sidebar-item" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+            <a class="sidebar-item" href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+            <a class="sidebar-item" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="sidebar-item active-item" href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        </nav>
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
-                <div class="form-extra">
-                    <input type="checkbox" id="terms" required />
-                    <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+    <!-- MAIN SIGNUP CARD -->
+    <main class="login-page">
+        <section class="neumorphic-card" style="max-width: 440px;">
+            <h2>Create Account</h2>
+            <div class="alert-area" id="alertArea"></div>
+            
+            <form id="signupForm" novalidate>
+                <div style="text-align: left; margin-bottom: 4px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Full Name</label>
+                </div>
+                <input type="text" id="name" name="name" class="neumorphic-input" placeholder="Ayush Kumar" required>
+                
+                <div style="text-align: left; margin-bottom: 4px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Email Address</label>
+                </div>
+                <input type="email" id="email" name="email" class="neumorphic-input" placeholder="you@example.com" required>
+                
+                <div style="text-align: left; margin-bottom: 4px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Password</label>
+                </div>
+                <input type="password" id="password" name="password" class="neumorphic-input" placeholder="••••••••" required>
+                
+                <div style="text-align: left; margin-bottom: 4px;">
+                    <label style="font-size:0.75rem; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Confirm Password</label>
+                </div>
+                <input type="password" id="confirm-password" name="confirmPassword" class="neumorphic-input" placeholder="••••••••" required>
+
+                <div class="form-extra" style="margin-bottom: 16px; margin-top: 4px;">
+                    <input type="checkbox" id="terms" required style="width: 16px; height: 16px; accent-color: var(--accent);">
+                    <label for="terms" style="font-size:0.8rem; color:var(--text-muted);">I agree to the <a href="/terms" target="_blank" style="font-weight:600; color:var(--accent);">Terms &amp; Conditions</a></label>
                 </div>
 
                 <button type="submit" class="neumorphic-button">Sign Up</button>
             </form>
 
             <div class="login-link">
-                Already have an account? <a href="login.html">Back to Login</a>
+                Already have an account? <a href="/login">Back to Login</a>
             </div>
         </section>
     </main>
 
-    <script>
-        // Optional: Password match check
-        const form = document.querySelector("form");
-        form.addEventListener("submit", function(e) {
-            const pass = document.getElementById("password").value;
-            const confirm = document.getElementById("confirm-password").value;
-            if (pass !== confirm) {
-                e.preventDefault();
-                alert("Passwords do not match!");
-            }
-        });
-    </script>
-
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-container">© 2025 ZENGardening. All rights reserved.</div>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🌿 ZENGardening</h4>
+                <p>Helping urban gardeners create beautiful green spaces on balconies and terrace properties.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/blog">Blogs</a>
+                <a href="/contact">Contact</a>
+                <a href="/about">About Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms &amp; Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p>ayushkrsingh008@gmail.com</p>
+                <div class="footer-social-links" style="margin-top: 10px;">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy">&copy; 2025 ZENGardening. All rights reserved.</div>
     </footer>
-</body>
 
+    <button id="goTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+</body>
 </html>
