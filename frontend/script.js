@@ -24,7 +24,11 @@ const defaultCourses = [
     {id:7,title:'Brinjal Bonanza',cat:'Vegetable',price:129,students:112,rating:'4.6',status:'Published',description:'Grow heavy-yielding brinjals (eggplants) in grow bags.',image:'brinjal-course.jpg'},
     {id:8,title:'Radish Rapid Results',cat:'Vegetable',price:89,students:94,rating:'4.5',status:'Published',description:'Learn how to harvest crisp radishes in less than 30 days.',image:'radish-course.jpg'},
     {id:9,title:'Carrot Care',cat:'Vegetable',price:99,students:76,rating:'4.7',status:'Published',description:'Grow sweet, crunchy carrots in deep planters.',image:'carrot-course.jpg'},
-    {id:10,title:'Pea Perfection',cat:'Vegetable',price:119,students:82,rating:'4.8',status:'Published',description:'Step-by-step tutorial on trellising and harvesting sweet peas.',image:'pea-course.jpg'}
+    {id:10,title:'Pea Perfection',cat:'Vegetable',price:119,students:82,rating:'4.8',status:'Published',description:'Step-by-step tutorial on trellising and harvesting sweet peas.',image:'pea-course.jpg'},
+    {id:11,title:'Sunflower Splendor',cat:'Flower',price:79,students:54,rating:'4.6',status:'Published',description:'Grow tall, stunning sunflowers in large pots and terrace beds.',image:'sunflower.jpg'},
+    {id:12,title:'Tulip Terrific',cat:'Flower',price:169,students:88,rating:'4.8',status:'Published',description:'Learn the chilling techniques and potting care for growing spring tulips.',image:'tulip.jpg'},
+    {id:13,title:'Orchid Masterclass',cat:'Flower',price:249,students:72,rating:'4.9',status:'Published',description:'Grow exotic, long-blooming orchids with expert humidity control tips.',image:'placeholder-profile.jpg'},
+    {id:14,title:'Jasmine Fragrance Guide',cat:'Flower',price:119,students:108,rating:'4.7',status:'Published',description:'Cultivate climbing jasmine vines for maximum aroma and daily fresh blooms.',image:'gardening.jpg'}
 ];
 
 const defaultBlogs = [
@@ -58,7 +62,24 @@ const defaultOrders = [
 // Initialize localStorage arrays
 function initializeDatabase() {
     if (!localStorage.getItem('zen-plants')) localStorage.setItem('zen-plants', JSON.stringify(defaultPlants));
-    if (!localStorage.getItem('zen-courses')) localStorage.setItem('zen-courses', JSON.stringify(defaultCourses));
+    
+    // Auto-update courses in localStorage if missing any default courses
+    if (!localStorage.getItem('zen-courses')) {
+        localStorage.setItem('zen-courses', JSON.stringify(defaultCourses));
+    } else {
+        const stored = JSON.parse(localStorage.getItem('zen-courses') || '[]');
+        let modified = false;
+        defaultCourses.forEach(dc => {
+            if (!stored.some(sc => sc.title === dc.title)) {
+                stored.push(dc);
+                modified = true;
+            }
+        });
+        if (modified) {
+            localStorage.setItem('zen-courses', JSON.stringify(stored));
+        }
+    }
+    
     if (!localStorage.getItem('zen-blogs')) localStorage.setItem('zen-blogs', JSON.stringify(defaultBlogs));
     if (!localStorage.getItem('zen-users')) localStorage.setItem('zen-users', JSON.stringify(defaultUsers));
     if (!localStorage.getItem('zen-messages')) localStorage.setItem('zen-messages', JSON.stringify(defaultMessages));
