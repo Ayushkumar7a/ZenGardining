@@ -128,24 +128,25 @@ a:hover {
 }
 
 .theme-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
+    background: var(--card-bg);
+    border: 1.5px solid var(--accent2);
+    color: var(--accent2);
     width: 36px;
     height: 36px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
+    box-shadow: 0 1px 6px rgba(76,175,80,0.18);
 }
 
 .theme-btn:hover {
-    background: var(--accent-glow);
-    color: var(--accent);
-    border-color: var(--accent);
+    background: var(--accent2);
+    color: #fff;
+    border-color: var(--accent2);
 }
 
 .menu-icon {
@@ -156,15 +157,17 @@ a:hover {
     justify-content: center;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 1.1rem;
-    color: var(--text);
-    border: 1px solid var(--border);
+    font-size: 1.15rem;
+    color: var(--accent2);
+    border: 1.5px solid var(--accent2);
+    background: var(--card-bg);
     transition: all var(--transition);
+    box-shadow: 0 1px 6px rgba(76,175,80,0.18);
 }
 
 .menu-icon:hover {
-    background: var(--accent-glow);
-    color: var(--accent);
+    background: var(--accent2);
+    color: #fff;
 }
 
 /* ── Sidebar ───────────────────────────────────────────────────────────── */
@@ -452,11 +455,20 @@ a:hover {
 }
 
 .courses h2 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 32px;
     font-size: 1.8rem;
     font-weight: 800;
     color: var(--text);
+    padding-left: calc(50vw - 550px + 28px);
+    max-width: 100%;
+}
+
+@media (max-width: 1100px) {
+    .courses h2 { padding-left: 28px; }
+}
+@media (max-width: 768px) {
+    .courses h2 { padding-left: 20px; }
 }
 
 .course-wrapper {
