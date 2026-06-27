@@ -27,8 +27,8 @@ const defaultCourses = [
     {id:10,title:'Pea Perfection',cat:'Vegetable',price:119,students:82,rating:'4.8',status:'Published',description:'Step-by-step tutorial on trellising and harvesting sweet peas.',image:'pea-course.jpg'},
     {id:11,title:'Sunflower Splendor',cat:'Flower',price:79,students:54,rating:'4.6',status:'Published',description:'Grow tall, stunning sunflowers in large pots and terrace beds.',image:'sunflower.jpg'},
     {id:12,title:'Tulip Terrific',cat:'Flower',price:169,students:88,rating:'4.8',status:'Published',description:'Learn the chilling techniques and potting care for growing spring tulips.',image:'tulip.jpg'},
-    {id:13,title:'Orchid Masterclass',cat:'Flower',price:249,students:72,rating:'4.9',status:'Published',description:'Grow exotic, long-blooming orchids with expert humidity control tips.',image:'placeholder-profile.jpg'},
-    {id:14,title:'Jasmine Fragrance Guide',cat:'Flower',price:119,students:108,rating:'4.7',status:'Published',description:'Cultivate climbing jasmine vines for maximum aroma and daily fresh blooms.',image:'gardening.jpg'}
+    {id:13,title:'Orchid Masterclass',cat:'Flower',price:249,students:72,rating:'4.9',status:'Published',description:'Grow exotic, long-blooming orchids with expert humidity control tips.',image:'orchid.jpg'},
+    {id:14,title:'Jasmine Fragrance Guide',cat:'Flower',price:119,students:108,rating:'4.7',status:'Published',description:'Cultivate climbing jasmine vines for maximum aroma and daily fresh blooms.',image:'jasmine.jpg'}
 ];
 
 const defaultBlogs = [
