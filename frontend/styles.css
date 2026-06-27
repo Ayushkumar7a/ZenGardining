@@ -461,9 +461,11 @@ a:hover {
 
 .course-wrapper {
     position: relative;
-    max-width: 1100px;
-    margin: 0 auto 36px;
-    padding: 0 48px;
+    width: 100vw;
+    left: 50%;
+    margin-left: -50vw;
+    margin-bottom: 36px;
+    overflow: visible;
 }
 
 .course-container {
@@ -471,7 +473,25 @@ a:hover {
     gap: 20px;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding: 10px 0 24px;
+    padding-top: 10px;
+    padding-left: calc(50vw - 550px + 28px);
+    padding-right: 48px;
+    padding-bottom: 24px;
+}
+
+@media (max-width: 1100px) {
+    .course-container {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .course-container {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 12px;
+    }
 }
 
 .course-container::-webkit-scrollbar {
@@ -572,8 +592,18 @@ a:hover {
     border-color: var(--accent);
 }
 
-.scroll-btn.left { left: 4px; }
-.scroll-btn.right { right: 4px; }
+.scroll-btn.left {
+    left: calc(50vw - 550px + 8px);
+}
+
+.scroll-btn.right {
+    right: calc(50vw - 550px + 8px);
+}
+
+@media (max-width: 1100px) {
+    .scroll-btn.left { left: 8px; }
+    .scroll-btn.right { right: 8px; }
+}
 
 /* ── Neumorphic / Glassmorphic Auth Forms ──────────────────────────────── */
 .login-page {
