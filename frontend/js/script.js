@@ -15,28 +15,28 @@ const defaultPlants = [
 ];
 
 const defaultCourses = [
-    {id:1,title:'Rose Gardening',cat:'Flower',price:199,students:284,rating:'4.9',status:'Published',description:'Master the art of growing vibrant roses in terrace spaces.',image:'rose.jpg'},
-    {id:2,title:'Chilli Pepper Power',cat:'Vegetable',price:149,students:198,rating:'4.7',status:'Published',description:'Spice up your terrace garden with vibrant chilli peppers. From seed to harvest.',image:'chilli-course.jpg'},
-    {id:3,title:'Dahlia Gardening',cat:'Flower',price:149,students:142,rating:'4.8',status:'Published',description:'Master the art of growing beautiful dahlias in containers.',image:'dahlia.jpg'},
-    {id:4,title:'Spinach Success',cat:'Vegetable',price:99,students:87,rating:'4.6',status:'Published',description:'Grow organic spinach and leafy greens in limited space.',image:'spinach-course.jpg'},
-    {id:5,title:'Lavender Gardening',cat:'Herb',price:99,students:63,rating:'4.5',status:'Published',description:'Learn how to cultivate fragrant lavender on balconies.',image:'lavender.jpg'},
-    {id:6,title:'Marigold Gardening',cat:'Flower',price:49,students:45,rating:'4.3',status:'Published',description:'Grow vibrant marigolds that also repel garden pests.',image:'marigold.jpg'},
-    {id:7,title:'Brinjal Bonanza',cat:'Vegetable',price:129,students:112,rating:'4.6',status:'Published',description:'Grow heavy-yielding brinjals (eggplants) in grow bags.',image:'brinjal-course.jpg'},
-    {id:8,title:'Radish Rapid Results',cat:'Vegetable',price:89,students:94,rating:'4.5',status:'Published',description:'Learn how to harvest crisp radishes in less than 30 days.',image:'radish-course.jpg'},
-    {id:9,title:'Carrot Care',cat:'Vegetable',price:99,students:76,rating:'4.7',status:'Published',description:'Grow sweet, crunchy carrots in deep planters.',image:'carrot-course.jpg'},
-    {id:10,title:'Pea Perfection',cat:'Vegetable',price:119,students:82,rating:'4.8',status:'Published',description:'Step-by-step tutorial on trellising and harvesting sweet peas.',image:'pea-course.jpg'},
-    {id:11,title:'Sunflower Splendor',cat:'Flower',price:79,students:54,rating:'4.6',status:'Published',description:'Grow tall, stunning sunflowers in large pots and terrace beds.',image:'sunflower.jpg'},
-    {id:12,title:'Tulip Terrific',cat:'Flower',price:169,students:88,rating:'4.8',status:'Published',description:'Learn the chilling techniques and potting care for growing spring tulips.',image:'tulip.jpg'},
-    {id:13,title:'Orchid Masterclass',cat:'Flower',price:249,students:72,rating:'4.9',status:'Published',description:'Grow exotic, long-blooming orchids with expert humidity control tips.',image:'orchid.jpg'},
-    {id:14,title:'Jasmine Fragrance Guide',cat:'Flower',price:119,students:108,rating:'4.7',status:'Published',description:'Cultivate climbing jasmine vines for maximum aroma and daily fresh blooms.',image:'jasmine.jpg'}
+    {id:1,title:'Rose Gardening',cat:'Flower',price:199,students:284,rating:'4.9',status:'Published',description:'Master the art of growing vibrant roses in terrace spaces.',image: 'images/rose.jpg'},
+    {id:2,title:'Chilli Pepper Power',cat:'Vegetable',price:149,students:198,rating:'4.7',status:'Published',description:'Spice up your terrace garden with vibrant chilli peppers. From seed to harvest.',image: 'images/chilli-course.jpg'},
+    {id:3,title:'Dahlia Gardening',cat:'Flower',price:149,students:142,rating:'4.8',status:'Published',description:'Master the art of growing beautiful dahlias in containers.',image: 'images/dahlia.jpg'},
+    {id:4,title:'Spinach Success',cat:'Vegetable',price:99,students:87,rating:'4.6',status:'Published',description:'Grow organic spinach and leafy greens in limited space.',image: 'images/spinach-course.jpg'},
+    {id:5,title:'Lavender Gardening',cat:'Herb',price:99,students:63,rating:'4.5',status:'Published',description:'Learn how to cultivate fragrant lavender on balconies.',image: 'images/lavender.jpg'},
+    {id:6,title:'Marigold Gardening',cat:'Flower',price:49,students:45,rating:'4.3',status:'Published',description:'Grow vibrant marigolds that also repel garden pests.',image: 'images/marigold.jpg'},
+    {id:7,title:'Brinjal Bonanza',cat:'Vegetable',price:129,students:112,rating:'4.6',status:'Published',description:'Grow heavy-yielding brinjals (eggplants) in grow bags.',image: 'images/brinjal-course.jpg'},
+    {id:8,title:'Radish Rapid Results',cat:'Vegetable',price:89,students:94,rating:'4.5',status:'Published',description:'Learn how to harvest crisp radishes in less than 30 days.',image: 'images/radish-course.jpg'},
+    {id:9,title:'Carrot Care',cat:'Vegetable',price:99,students:76,rating:'4.7',status:'Published',description:'Grow sweet, crunchy carrots in deep planters.',image: 'images/carrot-course.jpg'},
+    {id:10,title:'Pea Perfection',cat:'Vegetable',price:119,students:82,rating:'4.8',status:'Published',description:'Step-by-step tutorial on trellising and harvesting sweet peas.',image: 'images/pea-course.jpg'},
+    {id:11,title:'Sunflower Splendor',cat:'Flower',price:79,students:54,rating:'4.6',status:'Published',description:'Grow tall, stunning sunflowers in large pots and terrace beds.',image: 'images/sunflower.jpg'},
+    {id:12,title:'Tulip Terrific',cat:'Flower',price:169,students:88,rating:'4.8',status:'Published',description:'Learn the chilling techniques and potting care for growing spring tulips.',image: 'images/tulip.jpg'},
+    {id:13,title:'Orchid Masterclass',cat:'Flower',price:249,students:72,rating:'4.9',status:'Published',description:'Grow exotic, long-blooming orchids with expert humidity control tips.',image: 'images/orchid.jpg'},
+    {id:14,title:'Jasmine Fragrance Guide',cat:'Flower',price:119,students:108,rating:'4.7',status:'Published',description:'Cultivate climbing jasmine vines for maximum aroma and daily fresh blooms.',image: 'images/jasmine.jpg'}
 ];
 
 const defaultBlogs = [
-    {id:1,title:'Choosing the Right Roses for Your Terrace Garden',cat:'flowers',author:'Ayush Kumar',views:2400,status:'Published',date:'Mar 25, 2025',excerpt:'A comprehensive guide to selecting, planting and caring for rose varieties that thrive in containers and terrace conditions.',image:'rose.jpg'},
-    {id:2,title:'Growing Chilli Peppers in Pots – A Complete Guide',cat:'vegetables',author:'Ayush Kumar',views:1800,status:'Published',date:'Mar 18, 2025',excerpt:'Everything you need to know about growing fiery chilli peppers right on your balcony. From choosing varieties to harvest.',image:'chilli-course.jpg'},
-    {id:3,title:'10 Essential Watering Tips Every Gardener Should Know',cat:'tips',author:'Ayush Kumar',views:1200,status:'Published',date:'Mar 10, 2025',excerpt:'Overwatering is the #1 killer of terrace plants. Learn how to water smarter, not harder.',image:'gardening.jpg'},
-    {id:4,title:'Starting Your Own Herb Garden: Basil, Mint & More',cat:'herbs',author:'Ayush Kumar',views:950,status:'Published',date:'Feb 28, 2025',excerpt:'Herbs are the perfect starting point for new gardeners. Low maintenance, fast-growing, and useful.',image:'lavender.jpg'},
-    {id:5,title:'Natural Pest Control: How Marigolds Protect Your Garden',cat:'pest',author:'Ayush Kumar',views:870,status:'Published',date:'Feb 15, 2025',excerpt:'Discover how planting marigolds alongside your vegetables acts as nature\'s own pest repellent.',image:'marigold.jpg'}
+    {id:1,title:'Choosing the Right Roses for Your Terrace Garden',cat:'flowers',author:'Ayush Kumar',views:2400,status:'Published',date:'Mar 25, 2025',excerpt:'A comprehensive guide to selecting, planting and caring for rose varieties that thrive in containers and terrace conditions.',image: 'images/rose.jpg'},
+    {id:2,title:'Growing Chilli Peppers in Pots – A Complete Guide',cat:'vegetables',author:'Ayush Kumar',views:1800,status:'Published',date:'Mar 18, 2025',excerpt:'Everything you need to know about growing fiery chilli peppers right on your balcony. From choosing varieties to harvest.',image: 'images/chilli-course.jpg'},
+    {id:3,title:'10 Essential Watering Tips Every Gardener Should Know',cat:'tips',author:'Ayush Kumar',views:1200,status:'Published',date:'Mar 10, 2025',excerpt:'Overwatering is the #1 killer of terrace plants. Learn how to water smarter, not harder.',image: 'images/gardening.jpg'},
+    {id:4,title:'Starting Your Own Herb Garden: Basil, Mint & More',cat:'herbs',author:'Ayush Kumar',views:950,status:'Published',date:'Feb 28, 2025',excerpt:'Herbs are the perfect starting point for new gardeners. Low maintenance, fast-growing, and useful.',image: 'images/lavender.jpg'},
+    {id:5,title:'Natural Pest Control: How Marigolds Protect Your Garden',cat:'pest',author:'Ayush Kumar',views:870,status:'Published',date:'Feb 15, 2025',excerpt:'Discover how planting marigolds alongside your vegetables acts as nature\'s own pest repellent.',image: 'images/marigold.jpg'}
 ];
 
 const defaultUsers = [

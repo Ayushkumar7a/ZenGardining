@@ -978,7 +978,7 @@ function addCourse(){
     const title=document.getElementById('cTitle').value.trim();
     if(!title){showToast('⚠️ Course title required!');return;}
     courses.push({id:courses.length+1,title,cat:document.getElementById('cCat').value,
-        price:parseInt(document.getElementById('cPrice').value)||0,students:0,rating:'New',status:'Draft',description:document.getElementById('cDesc').value||'',image:'rose.jpg'});
+        price:parseInt(document.getElementById('cPrice').value)||0,students:0,rating:'New',status:'Draft',description:document.getElementById('cDesc').value||'',image: 'images/rose.jpg'});
     saveStore('zen-courses', courses);
     renderCourses();closeModal('addCourse');showToast('📚 Course "'+title+'" added!');
 }
@@ -990,7 +990,7 @@ function addBlog(){
     if(!title){showToast('⚠️ Blog title required!');return;}
     const today=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
     blogs.push({id:blogs.length+1,title,cat:document.getElementById('bCat').value,
-        author:'Ayush Kumar',views:0,status:document.getElementById('bStatus').value,date:today,excerpt:document.getElementById('bExcerpt').value||'',image:'rose.jpg'});
+        author:'Ayush Kumar',views:0,status:document.getElementById('bStatus').value,date:today,excerpt:document.getElementById('bExcerpt').value||'',image: 'images/rose.jpg'});
     saveStore('zen-blogs', blogs);
     renderBlogs();closeModal('addBlog');showToast('📝 Blog "'+title+'" saved!');
 }
