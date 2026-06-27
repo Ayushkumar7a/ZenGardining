@@ -63,15 +63,21 @@ const defaultOrders = [
 function initializeDatabase() {
     if (!localStorage.getItem('zen-plants')) localStorage.setItem('zen-plants', JSON.stringify(defaultPlants));
     
-    // Auto-update courses in localStorage if missing any default courses
+    // Auto-update courses: add missing ones AND update image paths for existing ones
     if (!localStorage.getItem('zen-courses')) {
         localStorage.setItem('zen-courses', JSON.stringify(defaultCourses));
     } else {
         const stored = JSON.parse(localStorage.getItem('zen-courses') || '[]');
         let modified = false;
         defaultCourses.forEach(dc => {
-            if (!stored.some(sc => sc.title === dc.title)) {
+            const idx = stored.findIndex(sc => sc.title === dc.title);
+            if (idx === -1) {
+                // Course missing — add it
                 stored.push(dc);
+                modified = true;
+            } else if (stored[idx].image !== dc.image) {
+                // Image path changed — sync it
+                stored[idx].image = dc.image;
                 modified = true;
             }
         });
