@@ -471,6 +471,26 @@ a:hover {
     .courses h2 { padding-left: 20px; }
 }
 
+/* Heading used when courses section is full-width (outside main-content) */
+.courses-heading {
+    text-align: left;
+    margin-bottom: 28px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text);
+    padding-left: calc(50vw - 550px + 28px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 1156px) {
+    .courses-heading { padding-left: 28px; }
+}
+@media (max-width: 768px) {
+    .courses-heading { padding-left: 20px; font-size: 1.4rem; }
+}
+
 .course-wrapper {
     position: relative;
     width: 100vw;

@@ -126,29 +126,6 @@
     <!-- MAIN BODY -->
     <main class="main-content">
         
-        <!-- Courses Section -->
-        <section class="courses" id="tutorials-section">
-            <h2 class="section-title"><i class="fas fa-spa" style="color:var(--accent)"></i> Beautiful Flower Gardening Courses</h2>
-            <div class="course-wrapper">
-                <button class="scroll-btn left" onclick="scrollLeft(this)">&#9665;</button>
-                <div class="course-container" id="flower-courses-list">
-                    <!-- Rendered Dynamically -->
-                </div>
-                <button class="scroll-btn right" onclick="scrollRight(this)">&#9655;</button>
-            </div>
-        </section>
-
-        <section class="courses">
-            <h2 class="section-title"><i class="fas fa-carrot" style="color:#ff9800"></i> Organic Vegetable Gardening Courses</h2>
-            <div class="course-wrapper">
-                <button class="scroll-btn left" onclick="scrollLeft(this)">&#9665;</button>
-                <div class="course-container" id="vegetable-courses-list">
-                    <!-- Rendered Dynamically -->
-                </div>
-                <button class="scroll-btn right" onclick="scrollRight(this)">&#9655;</button>
-            </div>
-        </section>
-
         <!-- FEEDBACK SECTION -->
         <section class="feedback">
             <h3>💬 Share Your Feedback</h3>
@@ -160,6 +137,29 @@
         </section>
         
     </main>
+
+    <!-- Courses Section - Full-Width outside main-content -->
+    <section class="courses" id="tutorials-section">
+        <h2 class="courses-heading"><i class="fas fa-spa" style="color:var(--accent)"></i> Beautiful Flower Gardening Courses</h2>
+        <div class="course-wrapper">
+            <button class="scroll-btn left" onclick="scrollLeft(this)">&#9665;</button>
+            <div class="course-container" id="flower-courses-list">
+                <!-- Rendered Dynamically -->
+            </div>
+            <button class="scroll-btn right" onclick="scrollRight(this)">&#9655;</button>
+        </div>
+    </section>
+
+    <section class="courses">
+        <h2 class="courses-heading"><i class="fas fa-carrot" style="color:#ff9800"></i> Organic Vegetable Gardening Courses</h2>
+        <div class="course-wrapper">
+            <button class="scroll-btn left" onclick="scrollLeft(this)">&#9665;</button>
+            <div class="course-container" id="vegetable-courses-list">
+                <!-- Rendered Dynamically -->
+            </div>
+            <button class="scroll-btn right" onclick="scrollRight(this)">&#9655;</button>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
