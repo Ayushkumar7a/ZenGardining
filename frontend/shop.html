@@ -542,6 +542,11 @@
             transition: all 0.25s;
         }
         .utr-submit-btn:hover { opacity: 0.9; }
+        .file-upload-trigger:hover {
+            border-color: var(--accent) !important;
+            color: var(--accent) !important;
+            background: var(--accent-glow) !important;
+        }
 
         /* ── Product Detail Modal ───────────────────────────────────── */
         .product-modal-overlay {
@@ -1011,6 +1016,18 @@
                     <label for="utrInput">Enter UTR / Transaction ID after payment</label>
                     <input type="text" id="utrInput" placeholder="e.g. T2506261234567890" maxlength="30">
                 </div>
+                <div class="utr-input-wrap" style="margin-top: 16px;">
+                    <label for="screenshotInput"><i class="fas fa-camera" style="margin-right:6px"></i>Upload Payment Screenshot / Receipt</label>
+                    <input type="file" id="screenshotInput" accept="image/*" onchange="previewScreenshot(event)" style="display: none;">
+                    <label for="screenshotInput" class="file-upload-trigger" style="display:flex; align-items:center; justify-content:center; gap:8px; border: 2px dashed var(--border); border-radius: 12px; padding: 14px; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; color: var(--text-muted); background: var(--bg);">
+                        <i class="fas fa-cloud-upload-alt" style="font-size:1.2rem; color:var(--accent)"></i>
+                        <span id="uploadStatusText">Click to choose image</span>
+                    </label>
+                    <div id="screenshotPreviewWrap" style="display:none; margin-top:12px; position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--border);">
+                        <img id="screenshotPreviewImg" src="" alt="Payment proof preview" style="width:100%; display:block; max-height:180px; object-fit:contain;">
+                        <button type="button" onclick="removeScreenshot(event)" style="position:absolute; top:8px; right:8px; background:rgba(0,0,0,0.6); border:none; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; color:#fff; cursor:pointer; font-size:0.8rem;"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
                 <button class="utr-submit-btn" onclick="submitShopOrder()">
                     <i class="fas fa-check-circle"></i> Confirm Order
                 </button>
@@ -1379,12 +1396,38 @@
         const upiUri = `upi://pay?pa=${upiId}&pn=ZENGardening&am=${total}&cu=INR&tn=PlantShopOrder`;
         document.getElementById('payQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUri)}`;
         document.getElementById('utrInput').value = '';
+        removeScreenshot();
         document.getElementById('paymentModal').classList.add('open');
         toggleCart(); // close cart drawer
     }
 
     function closePaymentModal() {
+        removeScreenshot();
         document.getElementById('paymentModal').classList.remove('open');
+    }
+
+    let paymentScreenshotBase64 = '';
+
+    function previewScreenshot(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        document.getElementById('uploadStatusText').innerText = file.name;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            paymentScreenshotBase64 = e.target.result;
+            document.getElementById('screenshotPreviewImg').src = paymentScreenshotBase64;
+            document.getElementById('screenshotPreviewWrap').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function removeScreenshot(event) {
+        if (event) event.stopPropagation();
+        paymentScreenshotBase64 = '';
+        document.getElementById('screenshotInput').value = '';
+        document.getElementById('uploadStatusText').innerText = 'Click to choose image';
+        document.getElementById('screenshotPreviewWrap').style.display = 'none';
+        document.getElementById('screenshotPreviewImg').src = '';
     }
 
     function submitShopOrder() {
@@ -1402,7 +1445,8 @@
             method: 'UPI QR',
             date: new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }),
             status: 'Pending Verification',
-            utr: utr
+            utr: utr,
+            screenshot: paymentScreenshotBase64
         });
         localStorage.setItem('zen-orders', JSON.stringify(orders));
 

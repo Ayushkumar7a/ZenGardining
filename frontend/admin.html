@@ -648,6 +648,22 @@
     </div>
 </div>
 
+<!-- SCREENSHOT VIEW MODAL -->
+<div class="modal-bg" id="modal-viewScreenshot" onclick="handleModalBg(event,'viewScreenshot')">
+    <div class="modal-box" style="max-width: 500px;">
+        <div class="modal-header">
+            <h3><i class="fas fa-image"></i> Payment Proof / Receipt</h3>
+            <button class="modal-close" onclick="closeModal('viewScreenshot')"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="text-align: center; padding: 20px;">
+            <img id="screenshotViewImg" src="" alt="Payment Screenshot" style="max-width: 100%; max-height: 450px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border);">
+        </div>
+        <div class="modal-footer" style="justify-content: flex-end;">
+            <button class="btn btn-outline" onclick="closeModal('viewScreenshot')">Close</button>
+        </div>
+    </div>
+</div>
+
 <!-- TOAST -->
 <div id="adminToast" style="position:fixed;bottom:28px;right:28px;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);padding:14px 20px;border-radius:12px;box-shadow:var(--shadow);font-size:.88rem;color:var(--text);z-index:3000;transform:translateY(20px);opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:280px;"></div>
 
@@ -823,7 +839,17 @@ function renderOrders(){
             <td>${o.student}</td>
             <td>${o.course}</td>
             <td>${o.amount}</td>
-            <td>${o.method}${o.utr ? ` <small style="display:block;color:var(--text-muted);font-size:0.7rem;font-weight:600;">UTR: ${o.utr}</small>` : ''}</td>
+            <td>
+                ${o.method}
+                ${o.utr ? ` <small style="display:block;color:var(--text-muted);font-size:0.7rem;font-weight:600;">UTR: ${o.utr}</small>` : ''}
+                ${o.screenshot ? `
+                    <div style="margin-top:6px;">
+                        <a href="#" onclick="viewScreenshotModal('${o.screenshot}')" style="display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; font-weight:600; color:var(--accent);">
+                            <i class="fas fa-image"></i> View Receipt
+                        </a>
+                    </div>
+                ` : ''}
+            </td>
             <td>${o.date}</td>
             <td><span class="badge ${statusBadge(o.status)}">${o.status}</span></td>
         </tr>`).join('');
@@ -1058,6 +1084,11 @@ function getAdminDetails() {
             console.error('Error loading admin details:', error);
         }
     }
+}
+
+function viewScreenshotModal(imgSrc) {
+    document.getElementById('screenshotViewImg').src = imgSrc;
+    openModal('viewScreenshot');
 }
 
 // ── INIT ─────────────────────────────────────────────────────────────
