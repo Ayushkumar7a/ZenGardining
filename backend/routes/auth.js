@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const fetchuser = require('../middleware/fetchuser');
-const JWT_SIGNATURE = "AyushKiGFhaiAlexa";
+const JWT_SIGNATURE = process.env.JWT_SECRET || "AyushKiGFhaiAlexa";
 
 
 // Route 1: Register a new user using POST "/api/auth/register"
@@ -108,7 +108,7 @@ router.get("/getuser", fetchuser, async(req, res) => {
         const user = await User.findById(userId).select("name email");
         return res.status(200).json({ user });
     } catch (error) {
-        console.error(error.massage);
+        console.error(error.message);
         res.status(500).send("Internal server error");
     }
 });

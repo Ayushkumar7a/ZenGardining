@@ -1,5 +1,5 @@
 require('dotenv').config();
-const JWT_SECRET = "AyushKiGFhaiAlexa";
+const JWT_SECRET = process.env.JWT_SECRET || "AyushKiGFhaiAlexa";
 const jwt = require('jsonwebtoken');
 
 const fetchuser = (req, res, next) => {

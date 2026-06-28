@@ -671,8 +671,23 @@
 // ── AUTH CHECK ───────────────────────────────────────────────────────
 function checkAdminLogin() {
     const token = localStorage.getItem('zengardining-authtoken');
-    if (!token) {
-        window.location.href = '/login';
+    const userStr = localStorage.getItem('zengardining-user');
+    let isAdmin = false;
+    
+    if (userStr) {
+        try {
+            const user = JSON.parse(userStr);
+            if (user && user.role === 'Admin') {
+                isAdmin = true;
+            }
+        } catch (e) {
+            console.error('Error checking admin validation:', e);
+        }
+    }
+    
+    if (!token || !isAdmin) {
+        // Redirect standard logged-in users to home, non-logged-in to login
+        window.location.href = token ? '/home' : '/login';
     }
 }
 checkAdminLogin();
